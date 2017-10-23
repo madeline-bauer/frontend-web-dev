@@ -1,0 +1,5 @@
+//A sweet text file
+
+This project is for making a website.
+
+Isn’t that neat?
