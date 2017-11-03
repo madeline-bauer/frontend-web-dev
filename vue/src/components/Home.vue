@@ -1,15 +1,8 @@
 <template>
     <main>
-          <v-flex xs12 class="my-3" >
-              <v-toolbar color="elevation-0">
-                <!--<v-toolbar-side-icon></v-toolbar-side-icon>-->
-                <v-toolbar-title>Computing in Community</v-toolbar-title>
-                <v-spacer></v-spacer>
-              </v-toolbar>
-          </v-flex>
 
       <section>
-        <v-parallax :src="require('@/assets/Library.jpg')" height = "500">
+        <v-parallax :src="require('@/assets/purple.jpg')" height = "450">
           <v-layout
             column
             align-center
@@ -30,24 +23,21 @@
           align-center
         >
           <v-flex xs12 sm8 class="my-3">
-            <div class="text-xs-center">
-              <h2 class="headline">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                 sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                 Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-                ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim
-                id est laborum.</h2>
-            </div>
+              <div class="text-xs-center subheading">{{missionStatement}}</div>
           </v-flex>
           <v-flex xs12>
             <v-container grid-list-xl>
               <v-layout row wrap align-center>
                 <v-flex xs12 md6>
-                  <v-card class="elevation-0 transparent">
-                    <v-card-text class="text-xs-center">
-                      <v-icon x-large class="blue--text text--lighten-2">school</v-icon>
-                    </v-card-text>
+                  <v-card>
+                    <v-card-media
+                      height="200px"
+                      :src="require('@/assets/BellTower.png')"
+                      >
+                    </v-card-media>
+                    <!--<v-card-text class="text-xs-center">
+                      <v-icon x-large>school</v-icon>
+                    </v-card-text>-->
                     <v-card-title primary-title class="layout justify-center">
                       <div class="headline text-xs-center">About</div>
                     </v-card-title>
@@ -56,10 +46,12 @@
                   </v-card>
                 </v-flex>
                 <v-flex xs12 md6>
-                  <v-card class="elevation-0 transparent">
-                    <v-card-text class="text-xs-center">
-                      <v-icon x-large class="blue--text text--lighten-2">people</v-icon>
-                    </v-card-text>
+                  <v-card>
+                    <v-card-media
+                      height="200px"
+                      :src="require('@/assets/BellTower.png')"
+                      >
+                    </v-card-media>
                     <v-card-title primary-title class="layout justify-center">
                       <div class="headline">Students</div>
                     </v-card-title>
@@ -68,10 +60,12 @@
                   </v-card>
                 </v-flex>
                 <v-flex xs12 md6>
-                  <v-card class="elevation-0 transparent">
-                    <v-card-text class="text-xs-center">
-                      <v-icon x-large class="blue--text text--lighten-2">play_arrow</v-icon>
-                    </v-card-text>
+                  <v-card>
+                    <v-card-media
+                      height="200px"
+                      :src="require('@/assets/BellTower.png')"
+                      >
+                    </v-card-media>
                     <v-card-title primary-title class="layout justify-center">
                       <div class="headline text-xs-center">Faculty</div>
                     </v-card-title>
@@ -80,10 +74,12 @@
                   </v-card>
                 </v-flex>
                 <v-flex xs12 md6>
-                  <v-card class="elevation-0 transparent">
-                    <v-card-text class="text-xs-center">
-                      <v-icon x-large class="blue--text text--lighten-2">play_arrow</v-icon>
-                    </v-card-text>
+                  <v-card>
+                    <v-card-media
+                      height="200px"
+                      :src="require('@/assets/BellTower.png')"
+                      >
+                    </v-card-media>
                     <v-card-title primary-title class="layout justify-center">
                       <div class="headline text-xs-center">Community Partners</div>
                     </v-card-title>
@@ -100,3 +96,13 @@
 
     </main>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      missionStatement: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt."
+    }
+  }
+}
+</script>
