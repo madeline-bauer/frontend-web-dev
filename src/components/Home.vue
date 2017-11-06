@@ -23,7 +23,35 @@
           align-center
         >
           <v-flex xs12 sm8 class="my-3">
-              <div class="text-xs-center subheading">{{missionStatement}}</div>
+              <v-card>
+                <v-form>
+                    <v-text-field
+                      label="Name"
+                      v-model="eventName"
+                      required
+                    ></v-text-field>
+                    <v-text-field
+                      label="Description"
+                      v-model="eventDesc"
+                      required
+                    ></v-text-field>
+                    <v-text-field
+                      label="Host"
+                      v-model="eventHost"
+                      required
+                    ></v-text-field>
+                    <v-text-field
+                      label="When"
+                      v-model="eventWhen"
+                      required
+                    ></v-text-field>
+                  </v-form>
+                  <v-btn
+                        @click="submit"
+                      >
+                        Submit
+                      </v-btn>
+              </v-card>
           </v-flex>
           <v-flex xs12>
             <v-container grid-list-xl>
@@ -98,11 +126,28 @@
 </template>
 
 <script>
-export default {
+import axios from 'axios';
+import qs from 'qs';
+ export default {
   data() {
     return {
-      missionStatement: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt."
+      missionStatement: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.",
+      eventHost: "Host",
+      eventDesc: "Desc",
+      eventName: "Name",
+      eventWhen: "When"
     }
+  },
+  methods: {
+      submit() {
+        var obj = new Object();
+        obj.name = this.eventName;
+        obj.description = this.eventDesc;
+        obj.host = this.eventHost;
+        obj.when = this.eventWhen;
+        console.log(this.eventName + this.eventDesc + this.eventHost + this.eventWhen)
+        axios.post('http://localhost:3000/events', qs.stringify({ 'name': 'hello123' }));
+      }
   }
 }
 </script>
