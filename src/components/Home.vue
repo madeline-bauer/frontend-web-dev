@@ -18,11 +18,8 @@
       <section>
         <v-layout
           column
-          wrap
-          class="my-5"
-          align-center
         >
-          <v-flex xs12 sm8 class="my-3">
+          <v-flex xs12 class="my-3">
               <div class="text-xs-center subheading">{{missionStatement}}</div>
           </v-flex>
           <v-flex xs12>
@@ -39,7 +36,7 @@
                       <v-icon x-large>school</v-icon>
                     </v-card-text>-->
                     <v-card-title primary-title class="layout justify-center">
-                      <div class="headline text-xs-center">About</div>
+                      <a class="headline text-xs-center" href='/#/about'>About</a>
                     </v-card-title>
                     <v-card-text>
                     </v-card-text>
@@ -53,7 +50,7 @@
                       >
                     </v-card-media>
                     <v-card-title primary-title class="layout justify-center">
-                      <div class="headline">Students</div>
+                      <a class="headline text-xs-center" href='/#/students'>Students</a>
                     </v-card-title>
                     <v-card-text>
                     </v-card-text>
@@ -67,7 +64,7 @@
                       >
                     </v-card-media>
                     <v-card-title primary-title class="layout justify-center">
-                      <div class="headline text-xs-center">Faculty</div>
+                      <a class="headline text-xs-center" href='/#/faculty'>Faculty</a>
                     </v-card-title>
                     <v-card-text>
                     </v-card-text>
@@ -81,7 +78,35 @@
                       >
                     </v-card-media>
                     <v-card-title primary-title class="layout justify-center">
-                      <div class="headline text-xs-center">Community Partners</div>
+                      <a class="headline text-xs-center" href='/#/courses'>Courses</a>
+                    </v-card-title>
+                    <v-card-text>
+                    </v-card-text>
+                  </v-card>
+                </v-flex>
+                <v-flex xs12 md6>
+                  <v-card>
+                    <v-card-media
+                      height="200px"
+                      :src="require('@/assets/BellTower.png')"
+                      >
+                    </v-card-media>
+                    <v-card-title primary-title class="layout justify-center">
+                      <a class="headline text-xs-center" href='/#/commmunity'>Community Partners</a>
+                    </v-card-title>
+                    <v-card-text>
+                    </v-card-text>
+                  </v-card>
+                </v-flex>
+                <v-flex xs12 md6>
+                  <v-card>
+                    <v-card-media
+                      height="200px"
+                      :src="require('@/assets/BellTower.png')"
+                      >
+                    </v-card-media>
+                    <v-card-title primary-title class="layout justify-center">
+                      <a class="headline text-xs-center" href='/#/blog'>Blog</a>
                     </v-card-title>
                     <v-card-text>
                     </v-card-text>
@@ -96,6 +121,14 @@
 
     </main>
 </template>
+
+<style>
+
+a{
+  text-decoration:none
+}
+
+</style>
 
 <script>
 export default {

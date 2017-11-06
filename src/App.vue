@@ -30,6 +30,7 @@
         <v-btn flat exact to='/' >Home</v-btn>
         <v-btn flat exact to='/students'>Students</v-btn>
         <v-btn flat exact to='/faculty'>Faculty</v-btn>
+        <v-btn flat exact to='/courses'>Courses</v-btn>
         <v-btn flat exact to='/community'>Community Partners</v-btn>
         <v-btn flat exact to='/calendar'>Calendar</v-btn>
         <v-btn flat exact to='/blog'>Blog</v-btn>
@@ -69,6 +70,7 @@
           { icon: 'home', title: 'Home', url: '/' },
           { icon: 'home', title: 'Students', url: '/students' },
           { icon: 'home', title: 'Faculty', url: '/faculty' },
+          { icon: 'home', title: 'Courses', url: '/courses' },
           { icon: 'home', title: 'Community Partners', url: '/community' },
           { icon: 'home', title: 'Calendar', url: '/calendar' },
           { icon: 'home', title: 'Blog', url: '/blog' },
