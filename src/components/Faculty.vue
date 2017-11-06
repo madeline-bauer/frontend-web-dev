@@ -9,7 +9,7 @@
           justify-center
           class="white--text"
           >
-          <img :src="require('@/assets/Students.png')" alt="Furman" height="300">
+          <img :src="require('@/assets/Faculty.png')" alt="Furman" height="300">
           <!--<h1 class="white--text mb-2 display-3">Computing in Community</h1>-->
         </v-layout>
       </v-parallax>
@@ -17,6 +17,7 @@
       <v-layout row wrap>
         <v-flex xs3>
           <v-card dark color="secondary">
+            </v-toolbar>
             <v-list>
               <v-list-group v-for="item in items" :value="item.active" v-bind:key="item.title">
                 <v-list-tile slot="item" @click="">
@@ -55,30 +56,20 @@ export default {
       items: [
       {
         action: 'local_activity',
-        title: 'Project Opportunities',
-        active: true
+        title: 'Apply for CinC Student Fellow',
+        active: true,
+        items: [
+        { title: 'Round 1' },
+        { title: 'Round 2' }
+        ]
       },
       {
         action: 'restaurant',
-        title: 'Experiences',
-        items: [
-        { title: 'Postings' },
-        { title: 'Employment History' }
-        ]
+        title: 'Experiences'
       },
       {
-        action: 'school',
-        title: 'Travel Opportunities',
-        items: [
-        { title: 'Research Conferences' },
-        { title: 'Research Competitions' },
-        { title: 'Programming Competitions / Hack-a-thons' },
-        { title: 'Grace Hopper Celebration of Women in Computing' }
-        ]
-      },
-      {
-        action: 'directions_run',
-        title: 'Student Awards'
+        action: 'restaurant',
+        title: 'Apply to be CinC Teaching Fellow',
       }
       ]
     }
