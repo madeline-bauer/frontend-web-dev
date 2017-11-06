@@ -28,7 +28,7 @@
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-sm-and-down">
         <v-btn flat exact to='/' >Home</v-btn>
-        <v-btn flat exact to='/hello'>Students</v-btn>
+        <v-btn flat exact to='/students'>Students</v-btn>
         <v-btn flat exact to='/faculty'>Faculty</v-btn>
         <v-btn flat exact to='/community'>Community Partners</v-btn>
         <v-btn flat exact to='/calendar'>Calendar</v-btn>
@@ -67,7 +67,7 @@
       return {
         items: [
           { icon: 'home', title: 'Home', url: '/' },
-          { icon: 'home', title: 'Students', url: '/hello' },
+          { icon: 'home', title: 'Students', url: '/students' },
           { icon: 'home', title: 'Faculty', url: '/faculty' },
           { icon: 'home', title: 'Community Partners', url: '/community' },
           { icon: 'home', title: 'Calendar', url: '/calendar' },

@@ -4,7 +4,7 @@
     <section>
       <v-parallax :src="require('@/assets/purple.jpg')" height="450">
         <v-layout column align-center justify-center class="white--text">
-          <img :src="require('@/assets/Students.png')" alt="Furman" height="300">
+          <img :src="require('@/assets/Students.png')" alt="Students" height="300">
           <!--<h1 class="white--text mb-2 display-3">Computing in Community</h1>-->
         </v-layout>
       </v-parallax>
