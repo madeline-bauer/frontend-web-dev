@@ -2,14 +2,14 @@
     <main>
 
       <section>
-        <v-parallax :src="require('@/assets/purple.jpg')" height = "450">
+        <v-parallax :src="require('@/assets/purple.png')" height = "400">
           <v-layout
             column
             align-center
             justify-center
             class="white--text"
           >
-            <img :src="require('@/assets/BellTower.png')" alt="Furman" height="300">
+            <img :src="require('@/assets/BellTower.png')" alt="Furman" height="250">
             <!--<h1 class="white--text mb-2 display-3">Computing in Community</h1>-->
           </v-layout>
         </v-parallax>
@@ -25,80 +25,80 @@
           <v-flex xs12>
             <v-container grid-list-xl>
               <v-layout row wrap align-center>
-                <v-flex xs12 md6>
+                <!--<v-flex xs12 md6>
                   <v-card>
                     <v-card-media
                       height="200px"
                       :src="require('@/assets/BellTower.png')"
                       >
                     </v-card-media>
-                    <!--<v-card-text class="text-xs-center">
+                    <v-card-text class="text-xs-center">
                       <v-icon x-large>school</v-icon>
-                    </v-card-text>-->
+                    </v-card-text>
                     <v-card-title primary-title class="layout justify-center">
                       <a class="headline text-xs-center" href='/#/about'>About</a>
                     </v-card-title>
                     <v-card-text>
                     </v-card-text>
                   </v-card>
-                </v-flex>
+                </v-flex>-->
                 <v-flex xs12 md6>
-                  <v-card>
-                    <v-card-media
-                      height="200px"
-                      :src="require('@/assets/BellTower.png')"
+                  <a href='/#/students'>
+                    <v-card hover>
+                      <v-card-media
+                      height="300px"
+                      :src="require('@/assets/Madeline.jpg')"
                       >
-                    </v-card-media>
-                    <v-card-title primary-title class="layout justify-center">
-                      <a class="headline text-xs-center" href='/#/students'>Students</a>
-                    </v-card-title>
-                    <v-card-text>
-                    </v-card-text>
-                  </v-card>
+                      </v-card-media>
+                      <v-card-title primary-title class="layout justify-center">
+                        <div class="headline text-xs-center">Students</div>
+                      </v-card-title>
+                    </v-card>
+                  </a>
                 </v-flex>
                 <v-flex xs12 md6>
-                  <v-card>
-                    <v-card-media
-                      height="200px"
-                      :src="require('@/assets/BellTower.png')"
+                  <a href='/#/faculty'>
+                    <v-card hover>
+                      <v-card-media
+                      height="300px"
+                      :src="require('@/assets/Treu.jpg')"
                       >
-                    </v-card-media>
-                    <v-card-title primary-title class="layout justify-center">
-                      <a class="headline text-xs-center" href='/#/faculty'>Faculty</a>
-                    </v-card-title>
-                    <v-card-text>
-                    </v-card-text>
-                  </v-card>
+                      </v-card-media>
+                      <v-card-title primary-title class="layout justify-center">
+                        <div class="headline text-xs-center" >Faculty</div>
+                      </v-card-title>
+                    </v-card>
+                  </a>
                 </v-flex>
                 <v-flex xs12 md6>
-                  <v-card>
-                    <v-card-media
-                      height="200px"
-                      :src="require('@/assets/BellTower.png')"
+                  <a href='/#/courses'>
+                    <v-card hover>
+                      <v-card-media
+                      height="300px"
+                      :src="require('@/assets/Class.jpg')"
                       >
-                    </v-card-media>
-                    <v-card-title primary-title class="layout justify-center">
-                      <a class="headline text-xs-center" href='/#/courses'>Courses</a>
-                    </v-card-title>
-                    <v-card-text>
-                    </v-card-text>
-                  </v-card>
+                      </v-card-media>
+                      <v-card-title primary-title class="layout justify-center">
+                        <div class="headline text-xs-center">Courses</div>
+                      </v-card-title>
+                    </v-card>
+                  </a>
                 </v-flex>
                 <v-flex xs12 md6>
-                  <v-card>
-                    <v-card-media
-                      height="200px"
-                      :src="require('@/assets/BellTower.png')"
+                  <a href='/#/commmunity'>
+                    <v-card hover>
+                      <v-card-media
+                      height="300px"
+                      :src="require('@/assets/Jasmine.jpg')"
                       >
-                    </v-card-media>
-                    <v-card-title primary-title class="layout justify-center">
-                      <a class="headline text-xs-center" href='/#/commmunity'>Community Partners</a>
-                    </v-card-title>
-                    <v-card-text>
-                    </v-card-text>
-                  </v-card>
+                      </v-card-media>
+                      <v-card-title primary-title class="layout justify-center">
+                        <div class="headline text-xs-center">Community Partners</div>
+                      </v-card-title>
+                    </v-card>
+                  </a>
                 </v-flex>
-                <v-flex xs12 md6>
+                <!--<v-flex xs12 md6>
                   <v-card>
                     <v-card-media
                       height="200px"
@@ -111,7 +111,7 @@
                     <v-card-text>
                     </v-card-text>
                   </v-card>
-                </v-flex>
+                </v-flex>-->
               </v-layout>
             </v-container>
           </v-flex>
@@ -123,11 +123,9 @@
 </template>
 
 <style>
-
 a{
   text-decoration:none
 }
-
 </style>
 
 <script>

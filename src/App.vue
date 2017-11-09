@@ -68,12 +68,12 @@
       return {
         items: [
           { icon: 'home', title: 'Home', url: '/' },
-          { icon: 'home', title: 'Students', url: '/students' },
-          { icon: 'home', title: 'Faculty', url: '/faculty' },
-          { icon: 'home', title: 'Courses', url: '/courses' },
-          { icon: 'home', title: 'Community Partners', url: '/community' },
-          { icon: 'home', title: 'Calendar', url: '/calendar' },
-          { icon: 'home', title: 'Blog', url: '/blog' },
+          { icon: 'person', title: 'Students', url: '/students' },
+          { icon: 'local_library', title: 'Faculty', url: '/faculty' },
+          { icon: 'school', title: 'Courses', url: '/courses' },
+          { icon: 'people', title: 'Community Partners', url: '/community' },
+          { icon: 'today', title: 'Calendar', url: '/calendar' },
+          { icon: 'description', title: 'Blog', url: '/blog' },
         ],
         miniVariant: false,
         rightDrawer: false,

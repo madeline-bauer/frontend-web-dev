@@ -1,8 +1,12 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/components/Home'
-import Hello from '@/components/Hello'
 import Students from '@/components/Students'
+import Blog from '@/components/Blog'
+import Courses from '@/components/Courses'
+import Faculty from '@/components/Faculty'
+import Community from '@/components/Community'
+import Calendar from '@/components/Calendar'
 
 Vue.use(Router)
 
@@ -17,6 +21,31 @@ export default new Router({
       path: '/students',
       name: 'Students',
       component: Students
+    },
+    {
+      path: '/blog',
+      name: 'Blog',
+      component: Blog
+    },
+    {
+      path: '/courses',
+      name: 'Courses',
+      component: Courses
+    },
+    {
+      path: '/faculty',
+      name: 'Faculty',
+      component: Faculty
+    },
+    {
+      path: '/community',
+      name: 'Community',
+      component: Community
+    },
+    {
+      path: '/calendar',
+      name: 'Calendar',
+      component: Calendar
     }
   ]
 })
