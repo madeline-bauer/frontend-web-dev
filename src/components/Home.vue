@@ -98,11 +98,22 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
   data() {
     return {
-      missionStatement: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt."
+      missionStatement: ""
     }
+  },
+  created() {
+    axios.get('http://localhost:3000/siteContent', {
+        params: {
+          name: 'mission statement'
+        }
+      })
+      .then(response => {
+        this.missionStatement = response.data[0].value;
+      })
   }
 }
 </script>
