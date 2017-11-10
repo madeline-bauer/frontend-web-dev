@@ -9,7 +9,8 @@
         justify-center
         class="white--text"
         >
-        <img :src="require('@/assets/today.svg')" alt="Calendar" height="250">
+        <img :src="require('@/assets/today.svg')" alt="Calendar" height="200">
+        <h4>Calendar</h4>
         </v-layout>
       </v-parallax>
     </section>
