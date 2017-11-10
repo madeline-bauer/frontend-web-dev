@@ -7,6 +7,7 @@ import Courses from '@/components/Courses'
 import Faculty from '@/components/Faculty'
 import Community from '@/components/Community'
 import Calendar from '@/components/Calendar'
+import postTest from '@/components/postTest'
 
 Vue.use(Router)
 
@@ -46,6 +47,11 @@ export default new Router({
       path: '/calendar',
       name: 'Calendar',
       component: Calendar
+    },
+    {
+      path: '/postTest',
+      name: 'POST Test',
+      component: postTest
     }
   ]
 })
