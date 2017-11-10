@@ -28,8 +28,9 @@
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-sm-and-down">
         <v-btn flat exact to='/' >Home</v-btn>
-        <v-btn flat exact to='/hello'>Students</v-btn>
+        <v-btn flat exact to='/students'>Students</v-btn>
         <v-btn flat exact to='/faculty'>Faculty</v-btn>
+        <v-btn flat exact to='/courses'>Courses</v-btn>
         <v-btn flat exact to='/community'>Community Partners</v-btn>
         <v-btn flat exact to='/calendar'>Calendar</v-btn>
         <v-btn flat exact to='/blog'>Blog</v-btn>
@@ -67,11 +68,12 @@
       return {
         items: [
           { icon: 'home', title: 'Home', url: '/' },
-          { icon: 'home', title: 'Students', url: '/hello' },
-          { icon: 'home', title: 'Faculty', url: '/faculty' },
-          { icon: 'home', title: 'Community Partners', url: '/community' },
-          { icon: 'home', title: 'Calendar', url: '/calendar' },
-          { icon: 'home', title: 'Blog', url: '/blog' },
+          { icon: 'person', title: 'Students', url: '/students' },
+          { icon: 'local_library', title: 'Faculty', url: '/faculty' },
+          { icon: 'school', title: 'Courses', url: '/courses' },
+          { icon: 'people', title: 'Community Partners', url: '/community' },
+          { icon: 'today', title: 'Calendar', url: '/calendar' },
+          { icon: 'description', title: 'Blog', url: '/blog' },
         ],
         miniVariant: false,
         rightDrawer: false,
