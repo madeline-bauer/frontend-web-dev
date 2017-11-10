@@ -73,7 +73,7 @@
           { icon: 'school', title: 'Courses', url: '/courses' },
           { icon: 'people', title: 'Community Partners', url: '/community' },
           { icon: 'today', title: 'Calendar', url: '/calendar' },
-          { icon: 'description', title: 'Blog', url: '/blog' },
+          { icon: 'web', title: 'Blog', url: '/blog' },
         ],
         miniVariant: false,
         rightDrawer: false,

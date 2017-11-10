@@ -9,7 +9,8 @@
         justify-center
         class="white--text"
         >
-        <img :src="require('@/assets/description.svg')" alt="Blog" height="250">
+        <img :src="require('@/assets/web.svg')" alt="Blog" height="200">
+        <h4>Blog</h4>
       </v-layout>
     </v-parallax>
   </section>

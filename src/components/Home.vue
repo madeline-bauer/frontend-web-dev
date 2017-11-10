@@ -9,8 +9,8 @@
             justify-center
             class="white--text"
           >
-            <img :src="require('@/assets/BellTower.png')" alt="Furman" height="250">
-            <!--<h1 class="white--text mb-2 display-3">Computing in Community</h1>-->
+            <img :src="require('@/assets/BellTower.png')" alt="Furman" height="200">
+            <h4>Computing in Community</h4>
           </v-layout>
         </v-parallax>
       </section>
@@ -85,7 +85,7 @@
                   </a>
                 </v-flex>
                 <v-flex xs12 md6>
-                  <a href='/#/commmunity'>
+                  <a href='/#/community'>
                     <v-card hover>
                       <v-card-media
                       height="300px"
