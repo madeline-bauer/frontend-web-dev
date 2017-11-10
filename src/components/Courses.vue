@@ -39,8 +39,6 @@
               <td class="text-xs-right">{{ props.item.name }}</td>
               <td class="text-xs-right">{{ props.item.term }}</td>
               <td class="text-xs-right">{{ props.item.description }}</td>
-              <td class="text-xs-right">{{ props.item.location }}</td>
-              <td class="text-xs-right">{{ props.item.meeting }}</td>
               <td class="text-xs-right">{{ props.item.instructor }}</td>
             </template>
             <template slot="pageText" scope="{ pageStart, pageStop }">
@@ -73,8 +71,6 @@
               <td class="text-xs-right">{{ props.item.name }}</td>
               <td class="text-xs-right">{{ props.item.term }}</td>
               <td class="text-xs-right">{{ props.item.description }}</td>
-              <td class="text-xs-right">{{ props.item.location }}</td>
-              <td class="text-xs-right">{{ props.item.meeting }}</td>
               <td class="text-xs-right">{{ props.item.instructor }}</td>
             </template>
             <template slot="pageText" scope="{ pageStart, pageStop }">
@@ -91,6 +87,7 @@
 </template>
 
 <script>
+  import axios from 'axios';
   export default {
     data () {
       return {
@@ -99,55 +96,42 @@
         search: '',
         pagination: {},
         headers: [
-          {
-            text: 'Courses', value: 'name' },
+          { text: 'Courses', value: 'name' },
           { text: 'Term', value: 'term' },
           { text: 'Description', value: 'description' },
-          { text: 'Location', value: 'location' },
-          { text: 'Meeting Time', value: 'meeting' },
           { text: 'Instructor(s)', value: 'instructor' }
         ],
-        existingCourses: [
-          {
-            value: false,
-            name: 'CSC-342',
-            term: 'Fall 2017',
-            description: 'Web-based application design',
-            location: 'Riley 204',
-            meeting: 'MWF 11:30-12:20',
-            instructor: 'Treu',
-          },
-          {
-            value: false,
-            name: 'CSC-105',
-            term: 'Spring 2018',
-            description: 'Introduction to Computer Science',
-            location: 'Riley 108',
-            meeting: 'TR 11:00-12:15',
-            instructor: 'Tartaro',
-          }
-        ],
-        suggestedCourses: [
-          {
-            value: false,
-            name: 'CSC-999',
-            term: 'Fall 9999',
-            description: 'CLASSSS',
-            location: 'Everywhere',
-            meeting: 'Always',
-            instructor: 'Everyone',
-          },
-          {
-            value: false,
-            name: 'CSC-000',
-            term: 'Spring 0000',
-            description: '------',
-            location: 'Nowhere',
-            meeting: 'Never',
-            instructor: 'No one',
-          }
-        ]
+        existingCourses: [],
+        suggestedCourses: []
       }
-    }
+    },
+      created() {
+        axios.get('http://localhost:3000/courses')
+          .then(response => {
+            var size = response.data.length;
+            var i;
+            for (i = 0; i < 4; i++){
+              if (response.data[i].type === 'offered' && response.data[i].approved){
+                this.existingCourses.push({
+                  value: false,
+                  name: response.data[i].name,
+                  term: response.data[i].when,
+                  description: response.data[i].description,
+                  instructor: response.data[i].profname,
+                });
+              }
+              else if (response.data[i].type === 'suggested' && response.data[i].approved){
+                this.suggestedCourses.push({
+                  value: false,
+                  name: response.data[i].name,
+                  term: response.data[i].when,
+                  description: response.data[i].description,
+                  instructor: response.data[i].profname,
+                });
+              }
+            }
+          })
+      }
+
   }
 </script>
