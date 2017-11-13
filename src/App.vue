@@ -31,7 +31,7 @@
         <v-btn flat exact to='/students'>Students</v-btn>
         <v-btn flat exact to='/faculty'>Faculty</v-btn>
         <v-btn flat exact to='/courses'>Courses</v-btn>
-        <v-btn flat exact to='/community'>Community Partners</v-btn>
+        <v-btn flat exact to='/community'>Community</v-btn>
         <v-btn flat exact to='/calendar'>Calendar</v-btn>
         <v-btn flat exact to='/blog'>Blog</v-btn>
         <!-- clean up maybe with v-for later -->
@@ -44,10 +44,10 @@
         :key="i" :to="item.url"
       > <!-- why are these always blue?? -->
         <v-list-tile-action>
-          <v-icon dark v-html="item.icon"></v-icon>
+          <v-icon dark v-html="item.icon" class="black--text"></v-icon>
         </v-list-tile-action>
         <v-list-tile-content>
-          <v-list-tile-title v-text="item.title"></v-list-tile-title>
+          <v-list-tile-title v-text="item.title" class="black--text"></v-list-tile-title>
         </v-list-tile-content>
       </v-list-tile>
     </v-list>
@@ -71,7 +71,7 @@
           { icon: 'person', title: 'Students', url: '/students' },
           { icon: 'local_library', title: 'Faculty', url: '/faculty' },
           { icon: 'school', title: 'Courses', url: '/courses' },
-          { icon: 'people', title: 'Community Partners', url: '/community' },
+          { icon: 'people', title: 'Community', url: '/community' },
           { icon: 'today', title: 'Calendar', url: '/calendar' },
           { icon: 'web', title: 'Blog', url: '/blog' },
         ],

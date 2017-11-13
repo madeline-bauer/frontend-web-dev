@@ -15,8 +15,27 @@
     </v-parallax>
   </section>
 
+
   <section>
-    <v-flex xs12 md8 offset-md2>
+    <v-layout fill-height fluid>
+      <v-flex xs12 md4>
+        <v-flex md10 offset-md1>
+        <v-card  class="my-3">
+            <v-card-title primary-title>
+              <div class="headline">Lorem Ipsum</div>
+              <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+              sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+            </v-card-title>
+            <v-card-actions>
+              <v-btn flat slot="activator">Submit Blog Post</v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-flex>
+        </v-flex>
+
+    </v-flex>
+    <v-flex xs12 md8>
+      <v-flex md11>
       <div v-for="post in posts" :key="post.id">
         <v-card class="my-3" hover>
           <v-card-media
@@ -40,6 +59,8 @@
       </v-card>
     </div>
   </v-flex>
+  </v-flex>
+</v-layout>
 </section>
 
 
@@ -50,6 +71,7 @@
 export default {
   data () {
     return {
+      dialog: false,
       posts: [
         {
           id: 1,
