@@ -1,3 +1,5 @@
+
+
 <template>
   <main>
 
@@ -17,25 +19,69 @@
 
     <section>
       <v-layout>
-        <v-flex xs12 sm6 offset-sm3>
-          <v-card>
-            <v-card-media :src="require('@/assets/Carina.jpg')"height="200px">
-            </v-card-media>
-            <v-card-title primary-title>
-              <div>
-                <h3 class="headline mb-0">Kangaroo Valley Safari</h3>
-                <div>Located two hours south of Sydney in the <br>Southern Highlands of New South Wales, ...</div>
-              </div>
-            </v-card-title>
-            <v-card-actions>
-              <v-btn flat color="orange">Share</v-btn>
-              <v-btn flat color="orange">Explore</v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-flex>
+        <v-container fill-height fluid>
+          <v-flex xs12 sm6 offset-sm3>
+            <v-card>
+              <full-calendar :events="fcEvents" locale="en"></full-calendar>
+            </v-card>
+          </v-flex>
+        </v-container>
       </v-layout>
     </section>
 
   </main>
 
 </template>
+
+<script>
+import axios from 'axios';
+export default {
+  data () {
+  return {
+    max25chars: (v) => v.length <= 25 || 'Input too long!',
+        tmp: '',
+        search: '',
+        pagination: {},
+        eventData: [
+          { text: 'Event', value: 'name' },
+          { text: 'Host', value: 'host' },
+          { text: 'Description', value: 'description' },
+          { text: 'Tags', value: 'tags'}
+        ],
+        upcomingEvents[],
+  }
+  },
+  components : {
+  'full-calendar': require('vue-fullcalendar')  
+  },
+        created() {
+        axios.get('http://localhost:3000/events?approved=true')
+          .then(response => {
+            var size = response.data.length;
+            var i;
+            for (i = 0; i < 4; i++){
+              if (response.data[i].tags.student === 'true'){
+                this.upcomingEvents.push({
+                  name: response.data[i].name,
+                  host: response.data[i].hostName,
+                  description: response.data[i].description,
+                  startTime: response.data[i].start,
+                  endTime: response.data[i].end,
+
+                });
+              }
+              else if (response.data[i].tags.faculty === 'true'){
+                this.upcomingEvents.push({
+                  name: response.data[i].name,
+                  host: response.data[i].hostName,
+                  description: response.data[i].description,
+                  startTime: response.data[i].start,
+                  endTime: response.data[i].end,
+                });
+              }
+            }
+          })
+      }
+}
+
+</script>
