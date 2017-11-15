@@ -24,7 +24,15 @@
     </v-navigation-drawer> -->
 
     <v-toolbar flat color="white">
-      <v-toolbar-title>Computing in Community</v-toolbar-title>
+      <a href='/#/'>
+        <img :src="require('@/assets/CinCblack.png')" height="40">
+      </a>
+      <a href = '/#/'>
+        <v-toolbar-title>
+          <div class="title">CinC @Furman</div>
+        </v-toolbar-title>
+      </a>
+
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-sm-and-down">
         <v-btn flat exact to='/' >Home</v-btn>
@@ -81,3 +89,10 @@
     }
   }
 </script>
+
+<style>
+.title {
+  text-decoration: none;
+  color: black;
+}
+</style>
