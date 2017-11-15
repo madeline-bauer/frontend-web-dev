@@ -9,8 +9,8 @@
             justify-center
             class="white--text"
           >
-            <img :src="require('@/assets/BellTower.png')" alt="Furman" height="200">
-            <h4>Computing in Community</h4>
+            <img :src="require('@/assets/CinCwhite.png')" alt="Computing in Community" height="300">
+            <!--<h4>Computing in Community</h4>-->
           </v-layout>
         </v-parallax>
       </section>
@@ -25,23 +25,6 @@
           <v-flex xs12>
             <v-container grid-list-xl>
               <v-layout row wrap align-center>
-                <!--<v-flex xs12 md6>
-                  <v-card>
-                    <v-card-media
-                      height="200px"
-                      :src="require('@/assets/BellTower.png')"
-                      >
-                    </v-card-media>
-                    <v-card-text class="text-xs-center">
-                      <v-icon x-large>school</v-icon>
-                    </v-card-text>
-                    <v-card-title primary-title class="layout justify-center">
-                      <a class="headline text-xs-center" href='/#/about'>About</a>
-                    </v-card-title>
-                    <v-card-text>
-                    </v-card-text>
-                  </v-card>
-                </v-flex>-->
                 <v-flex xs12 md6>
                   <a href='/#/students'>
                     <v-card hover>
@@ -98,20 +81,6 @@
                     </v-card>
                   </a>
                 </v-flex>
-                <!--<v-flex xs12 md6>
-                  <v-card>
-                    <v-card-media
-                      height="200px"
-                      :src="require('@/assets/BellTower.png')"
-                      >
-                    </v-card-media>
-                    <v-card-title primary-title class="layout justify-center">
-                      <a class="headline text-xs-center" href='/#/blog'>Blog</a>
-                    </v-card-title>
-                    <v-card-text>
-                    </v-card-text>
-                  </v-card>
-                </v-flex>-->
               </v-layout>
             </v-container>
           </v-flex>

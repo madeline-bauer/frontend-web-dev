@@ -16,9 +16,83 @@
   </section>
 
   <section>
-    <v-container fill-height fluid>
-      <v-flex xs12 md8 offset-md2>
-        <v-card>
+    <v-layout row justify-space-around wrap>
+
+      <v-flex xs12 md3>
+        <v-card  class="my-3" >
+          <v-card-title primary-title>
+            <div class="headline">Lorem Ipsum</div>
+          </v-card-title>
+          <v-card-text>
+            <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+              sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </div>
+          </v-card-text>
+          <v-card-actions>
+            <v-dialog v-model="dialog" persistent max-width="600px">
+              <v-btn flat slot="activator">Suggest a Course</v-btn>
+              <v-card>
+                <v-form v-model="valid" ref="form" lazy-validation>
+                  <v-card-title>
+                    <span class="headline">Suggest a Course</span>
+                  </v-card-title>
+                  <v-card-text>
+                    <v-container grid-list-md>
+                      <v-layout wrap>
+                        <v-flex xs12>
+                          <v-text-field
+                            label="Name"
+                            v-model="name"
+                            :rules="rules"
+                            required
+                          >
+                          </v-text-field>
+                        </v-flex>
+                        <v-flex xs12>
+                          <v-text-field
+                            label="Term"
+                            v-model="term"
+                            :rules="rules"
+                            required
+                          >
+                          </v-text-field>
+                        </v-flex>
+                        <v-flex xs12>
+                          <v-text-field
+                            label="Description"
+                            v-model="description"
+                            :rules="rules"
+                            required
+                          >
+                          </v-text-field>
+                        </v-flex>
+                        <v-flex xs12>
+                          <v-text-field
+                            label="Instructor"
+                            v-model="instructor"
+                            :rules="rules"
+                            required
+                          >
+                          </v-text-field>
+                        </v-flex>
+
+                      </v-layout>
+                    </v-container>
+                    <small>*indicates required field</small>
+                  </v-card-text>
+                  <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn flat @click="submit" :disabled="!valid">Submit</v-btn>
+                    <v-btn flat @click.native="dialog = false">Close</v-btn>
+                  </v-card-actions>
+                </v-form>
+              </v-card>
+            </v-dialog>
+          </v-card-actions>
+        </v-card>
+      </v-flex>
+      <v-flex xs12 md8>
+        <v-card class="my-3">
           <v-card-title class="headline">
             Existing Cinc Courses
             <v-spacer></v-spacer>
@@ -47,10 +121,10 @@
           </v-data-table>
         </v-card>
       </v-flex>
-    </v-container>
-    <v-container fill-height fluid>
-      <v-flex xs12 md8 offset-md2>
-        <v-card>
+      <v-flex xs12 md3>
+      </v-flex>
+      <v-flex xs12 md8>
+        <v-card class="my-3">
           <v-card-title class="headline">
             Suggested Cinc Courses
             <v-spacer></v-spacer>
@@ -79,12 +153,16 @@
           </v-data-table>
         </v-card>
       </v-flex>
-    </v-container>
+
+
+    </v-layout>
+
   </section>
 
 
 </main>
 </template>
+
 
 <script>
   import axios from 'axios';
@@ -102,7 +180,16 @@
           { text: 'Instructor(s)', value: 'instructor' }
         ],
         existingCourses: [],
-        suggestedCourses: []
+        suggestedCourses: [],
+        dialog: false,
+        valid: true,
+        name: '',
+        term: '',
+        description:'',
+        instructor:'',
+        rules: [
+            (v) => !!v || 'Item is required'
+        ],
       }
     },
       created() {
@@ -110,7 +197,7 @@
           .then(response => {
             var size = response.data.length;
             var i;
-            for (i = 0; i < 4; i++){
+            for (i = 0; i < size; i++){
               if (response.data[i].type === 'offered' && response.data[i].approved){
                 this.existingCourses.push({
                   value: false,
