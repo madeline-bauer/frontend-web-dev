@@ -1,5 +1,3 @@
-
-
 <template>
   <main>
 
@@ -22,7 +20,7 @@
         <v-container fill-height fluid>
           <v-flex xs12 sm6 offset-sm3>
             <v-card>
-              <full-calendar :events="cincevents" locale="en"></full-calendar>
+              <full-calendar :events="eventData" locale="en"></full-calendar>
             </v-card>
           </v-flex>
         </v-container>
@@ -44,12 +42,16 @@ export default {
         pagination: {},
         eventData: [
           { text: 'Event', value: 'name' },
-          { text: 'Host', value: 'host' },
+          { text: 'Host', value: 'hostName' },
           { text: 'Description', value: 'description' },
-          { text: 'Tags', value: 'tags'},
+          { text: 'Start Date', value: eventSplit(startTime)[0]},
+          { text: 'End Date', value: eventSplit(endTime)[0]},
+          { text: 'Start Time', value: eventSplit(startTime)[1]},
+          { text: 'End Time', value: eventSplit(endTime)[1]},
+          { text: 'Tags', value: 'tags'}
         ],
-        upcomingEvents: [],
-    },
+        cincevents: [],
+    }
   },
   components : {
   'full-calendar': require('vue-fullcalendar')  
@@ -61,7 +63,7 @@ export default {
             var i;
             for (i = 0; i < 4; i++){
               if (response.data[i].tags.student === 'true'){
-                this.upcomingEvents.push({
+                this.eventData.push({
                   name: response.data[i].name,
                   host: response.data[i].hostName,
                   description: response.data[i].description,
@@ -71,7 +73,7 @@ export default {
                 });
               }
               else if (response.data[i].tags.faculty === 'true'){
-                this.upcomingEvents.push({
+                this.cincevents.push({
                   name: response.data[i].name,
                   host: response.data[i].hostName,
                   description: response.data[i].description,
@@ -81,6 +83,12 @@ export default {
               }
             }
           })
+      },
+      eventSplit(dateTime){
+        var dts = dateTime.split(" ");
+        var date = dts[0];
+        var time = dts[1];
+        return (date, time);
       }
 }
 
