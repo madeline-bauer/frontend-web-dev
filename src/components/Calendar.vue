@@ -22,7 +22,7 @@
         <v-container fill-height fluid>
           <v-flex xs12 sm6 offset-sm3>
             <v-card>
-              <full-calendar :events="fcEvents" locale="en"></full-calendar>
+              <full-calendar :events="cincevents" locale="en"></full-calendar>
             </v-card>
           </v-flex>
         </v-container>
@@ -46,10 +46,10 @@ export default {
           { text: 'Event', value: 'name' },
           { text: 'Host', value: 'host' },
           { text: 'Description', value: 'description' },
-          { text: 'Tags', value: 'tags'}
+          { text: 'Tags', value: 'tags'},
         ],
-        upcomingEvents[],
-  }
+        upcomingEvents: [],
+    },
   },
   components : {
   'full-calendar': require('vue-fullcalendar')  
