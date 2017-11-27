@@ -73,7 +73,7 @@
   components : {
   'full-calendar': require('vue-fullcalendar')
   },
-  methods : {
+  /*methods : {
     'eventClick' (event, jsEvent, pos) {
        console.log('eventClick', event, jsEvent, pos)
     },
@@ -83,14 +83,14 @@
     'moreClick' (day, events, jsEvent) {
       console.log('moreCLick', day, events, jsEvent)
     }
-  },
+  },*/
 
   created() {
     axios.get('http://localhost:3000/events?approved=true').then(response => {
       var size = response.data.length;
       var i;
       for (i = 0; i < size; i++){
-        if (response.data[i].tags.student === 'true'){
+        /*if (response.data[i].tags.student === 'true'){
           this.eventData.push({
             name: response.data[i].name,
             host: response.data[i].hostName,
@@ -98,8 +98,8 @@
             startTime: response.data[i].start,
             endTime: response.data[i].end,
           });
-        }
-        else if (response.data[i].tags.faculty === 'true'){
+        }*/
+        if (response.data[i].tags.faculty){
           this.cincevents.push({
             title: response.data[i].name,
             //host: response.data[i].hostName,
@@ -111,6 +111,7 @@
       }
     })
   },
+
 }
 
 </script>
