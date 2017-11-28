@@ -11,7 +11,7 @@
   >
   <v-layout row wrap>
     <v-flex xs12>
-      <v-card color="grey" class="white--text">
+      <v-card color="white" class="black--text" hover>
         <v-container fluid grid-list-lg>
           <v-layout row>
             <v-flex xs7>
@@ -32,7 +32,7 @@
       </v-card>
     </v-flex>
     <v-flex xs12>
-      <v-card color="grey" class="white--text">
+      <v-card color="white" class="black--text" hover>
         <v-container fluid grid-list-lg>
           <v-layout row>
             <v-flex xs7>
@@ -53,7 +53,7 @@
       </v-card>
     </v-flex>
     <v-flex xs12>
-      <v-card color="grey" class="white--text">
+      <v-card color="white" class="black--text" hover>
         <v-container fluid grid-list-lg>
           <v-layout row>
             <v-flex xs7>
