@@ -22,10 +22,12 @@
                 <v-tabs-item
                   v-for="tab in tabs"
                   :key="tab.url"
-                  ripple
+                  :ripple="{ class: 'grey--text text--lighten-2' }"
                   :to="tab.url"
                 >
-                  {{ tab.name }}
+                  <div class="black--text">
+                    {{ tab.name }}
+                  </div>
                 </v-tabs-item>
                 <v-tabs-slider color="white"></v-tabs-slider>
               </v-tabs-bar>

@@ -16,14 +16,16 @@
   <section>
     <div>
         <v-tabs v-model="active">
-          <v-tabs-bar class="grey" dark>
+          <v-tabs-bar class="grey">
             <v-tabs-item
               v-for="tab in tabs"
               :key="tab.url"
-              ripple
+              :ripple="{ class: 'grey--text text--lighten-2' }"
               :to="tab.url"
             >
-              {{ tab.name }}
+              <div class="black--text">
+                {{ tab.name }}
+              </div>
             </v-tabs-item>
             <v-tabs-slider color="white"></v-tabs-slider>
           </v-tabs-bar>
@@ -54,3 +56,10 @@
     }
   }
 </script>
+
+<style>
+{
+  text-decoration:none;
+  color: black;
+}
+</style>
