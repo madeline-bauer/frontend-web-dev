@@ -1,7 +1,18 @@
 <template>
-  <div class="hello">
-    sup
-  </div>
+  <v-layout row>
+    <v-flex xs10 offset-xs1 class="py-3 px-3">
+      <v-card >
+        <v-card-title primary-title>
+          <div class="headline">Lorem Ipsum</div>
+        </v-card-title>
+        <v-card-text>
+          <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </div>
+        </v-card-text>
+      </v-card>
+    </v-flex>
+  </v-layout>
 </template>
 
 <script>

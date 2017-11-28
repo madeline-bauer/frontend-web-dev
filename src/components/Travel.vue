@@ -1,19 +1,82 @@
 <template>
-  <div class="hello">
-    sup
-  </div>
+  <div
+  id="e3"
+  class="grey lighten-3 py-3 px-3"
+  style="max-width: 1000px; margin: auto;"
+  >
+  <v-container
+  fluid
+  style="min-height: 0;"
+  grid-list-lg
+  >
+  <v-layout row wrap>
+    <v-flex xs12>
+      <v-card color="grey" class="white--text">
+        <v-container fluid grid-list-lg>
+          <v-layout row>
+            <v-flex xs7>
+              <div>
+                <div class="headline">Travel 1</div>
+                <div>Description 1</div>
+              </div>
+            </v-flex>
+            <v-flex xs5 offset-md5>
+              <v-card-media
+              :src="require('@/assets/Madeline.jpg')"
+              height="125px"
+              contain
+              ></v-card-media>
+            </v-flex>
+          </v-layout>
+        </v-container>
+      </v-card>
+    </v-flex>
+    <v-flex xs12>
+      <v-card color="grey" class="white--text">
+        <v-container fluid grid-list-lg>
+          <v-layout row>
+            <v-flex xs7>
+              <div>
+                <div class="headline">Travel 2</div>
+                <div>Description 2</div>
+              </div>
+            </v-flex>
+            <v-flex xs5 offset-md5>
+              <v-card-media
+              :src="require('@/assets/Madeline.jpg')"
+              height="125px"
+              contain
+              ></v-card-media>
+            </v-flex>
+          </v-layout>
+        </v-container>
+      </v-card>
+    </v-flex>
+    <v-flex xs12>
+      <v-card color="grey" class="white--text">
+        <v-container fluid grid-list-lg>
+          <v-layout row>
+            <v-flex xs7>
+              <div>
+                <div class="headline">Travel 3</div>
+                <div>Description 3</div>
+              </div>
+            </v-flex>
+            <v-flex xs5 offset-md5>
+              <v-card-media
+              :src="require('@/assets/Madeline.jpg')"
+              height="125px"
+              contain
+              ></v-card-media>
+            </v-flex>
+          </v-layout>
+        </v-container>
+      </v-card>
+    </v-flex>
+  </v-layout>
+</v-container>
+</div>
 </template>
-
-<script>
-export default {
-  name: 'Travel',
-  data () {
-    return {
-      msg: 'Travel'
-    }
-  }
-}
-</script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>

@@ -1,19 +1,82 @@
 <template>
-  <div class="hello">
-    sup
-  </div>
+  <div
+  id="e3"
+  class="grey lighten-3 py-3 px-3"
+  style="max-width: 1000px; margin: auto;"
+  >
+  <v-container
+  fluid
+  style="min-height: 0;"
+  grid-list-lg
+  >
+  <v-layout row wrap>
+    <v-flex xs12>
+      <v-card color="grey" class="white--text">
+        <v-container fluid grid-list-lg>
+          <v-layout row>
+            <v-flex xs7>
+              <div>
+                <div class="headline">Partner 1</div>
+                <div>Description 1</div>
+              </div>
+            </v-flex>
+            <v-flex xs5>
+              <v-card-media
+              src="/static/doc-images/cards/foster.jpg"
+              height="125px"
+              contain
+              ></v-card-media>
+            </v-flex>
+          </v-layout>
+        </v-container>
+      </v-card>
+    </v-flex>
+    <v-flex xs12>
+      <v-card color="grey" class="white--text">
+        <v-container fluid grid-list-lg>
+          <v-layout row>
+            <v-flex xs7>
+              <div>
+                <div class="headline">Partner 2</div>
+                <div>Description 2</div>
+              </div>
+            </v-flex>
+            <v-flex xs5>
+              <v-card-media
+              src="/static/doc-images/cards/halcyon.png"
+              height="125px"
+              contain
+              ></v-card-media>
+            </v-flex>
+          </v-layout>
+        </v-container>
+      </v-card>
+    </v-flex>
+    <v-flex xs12>
+      <v-card color="grey" class="white--text">
+        <v-container fluid grid-list-lg>
+          <v-layout row>
+            <v-flex xs7>
+              <div>
+                <div class="headline">Partner 3</div>
+                <div>Description 3</div>
+              </div>
+            </v-flex>
+            <v-flex xs5>
+              <v-card-media
+              src="/static/doc-images/cards/halcyon.png"
+              height="125px"
+              contain
+              ></v-card-media>
+            </v-flex>
+          </v-layout>
+        </v-container>
+      </v-card>
+    </v-flex>
+  </v-layout>
+</v-container>
+</div>
 </template>
-
-<script>
-export default {
-  name: 'Partnerships',
-  data () {
-    return {
-      msg: 'Partnerships'
-    }
-  }
-}
-</script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
