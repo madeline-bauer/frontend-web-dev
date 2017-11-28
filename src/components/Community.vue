@@ -14,73 +14,45 @@
         </v-layout>
       </v-parallax>
     </section>
-
+    </section>
       <section>
         <div>
-          <v-tabs dark v-model="active">
-            <v-tabs-bar class="grey">
-              <v-tabs-item
-              v-for="tab in tabs"
-              :key="tab.id"
-              :href="'#' + tab.name"
-              ripple
-              >
-              {{tab.name}}
-            </v-tabs-item>
-            <v-tabs-slider color="white"></v-tabs-slider>
-          </v-tabs-bar>
-          <v-tabs-items>
-            <v-tabs-content
-            v-for="tab in tabs"
-            :key="tab.name"
-            :id='tab.name'
-            >
+            <v-tabs v-model="active">
+              <v-tabs-bar class="grey" dark>
+                <v-tabs-item
+                  v-for="tab in tabs"
+                  :key="tab.url"
+                  ripple
+                  :to="tab.url"
+                >
+                  {{ tab.name }}
+                </v-tabs-item>
+                <v-tabs-slider color="white"></v-tabs-slider>
+              </v-tabs-bar>
+            </v-tabs>
             <v-card flat>
-              <v-card-text>{{tab.text}}</v-card-text>
+              <v-slide-x-transition mode="out-in">
+                <router-view></router-view>
+              </v-slide-x-transition>
             </v-card>
-          </v-tabs-content>
-        </v-tabs-items>
-      </v-tabs>
-    </div>
+          </div>
     </section>
+  </main>
+</template>
 
-    </main>
-    </template>
-
-    <script>
+<script>
     export default {
       data () {
         return {
           tabs: [
-          {
-            id: 1,
-            name: 'Promotional Information',
-            text: 'Content1'
-          },
-          {
-            id: 2,
-            name: 'Partnerships',
-            text: 'Content2'
-          },
-          {
-            id: 3,
-            name: 'Post Job / Internship Ad',
-            text: 'Content3'
-          },
-          {
-            id: 4,
-            name: 'Apply for Funded Intern',
-            text: 'Content4'
-          }
+            { url: '/Community/Information', name: 'Promotional Information' },
+            { url: '/Community/Partnerships', name: 'Partnerships' },
+            { url: '/Community/JobInternship', name: 'Post Job / Internship Ad' },
+            { url: '/Community/ApplyIntern', name: 'Apply for Funded Intern' }
           ],
-          active: null
+          active: null,
+          text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
         }
-
       }
     }
-    </script>
-
-
-
-  </main>
-</template>
+  </script>

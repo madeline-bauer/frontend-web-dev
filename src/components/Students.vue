@@ -14,67 +14,45 @@
       </v-layout>
     </v-parallax>
   </section>
-  <section>
-    <div>
-      <v-tabs dark v-model="active">
-        <v-tabs-bar class="grey">
-          <v-tabs-item
-          v-for="tab in tabs"
-          :key="tab.id"
-          :href="'#' + tab.name"
-          ripple
-          >
-          {{tab.name}}
-        </v-tabs-item>
-        <v-tabs-slider color="white"></v-tabs-slider>
-      </v-tabs-bar>
-      <v-tabs-items>
-        <v-tabs-content
-        v-for="tab in tabs"
-        :key="tab.name"
-        :id='tab.name'
-        >
-        <v-card flat>
-          <v-card-text>{{tab.text}}</v-card-text>
-        </v-card>
-      </v-tabs-content>
-    </v-tabs-items>
-  </v-tabs>
-</div>
-</section>
+    <section>
+      <div>
+          <v-tabs v-model="active">
+            <v-tabs-bar class="grey" dark>
+              <v-tabs-item
+                v-for="tab in tabs"
+                :key="tab.url"
+                ripple
+                :to="tab.url"
+              >
+                {{ tab.name }}
+              </v-tabs-item>
+              <v-tabs-slider color="white"></v-tabs-slider>
+            </v-tabs-bar>
+          </v-tabs>
+          <v-card flat>
+            <v-slide-x-transition mode="out-in">
+              <router-view></router-view>
+            </v-slide-x-transition>
+          </v-card>
+        </div>
+  </section>
 
-</main>
-</template>
+  </main>
+  </template>
 
-<script>
-export default {
-  data () {
-    return {
-      tabs: [
-      {
-        id: 1,
-        name: 'Project Opportunities',
-        text: 'Content1'
-      },
-      {
-        id: 2,
-        name: 'Experiences',
-        text: 'Content2'
-      },
-      {
-        id: 3,
-        name: 'Travel Opportunities',
-        text: 'Content3'
-      },
-      {
-        id: 4,
-        name: 'Student Awards',
-        text: 'Content4'
+  <script>
+    export default {
+      data () {
+        return {
+          tabs: [
+            { url: '/Students/ProjectOpportunities', name: 'Project Opportunities' },
+            { url: '/Students/StudentExperiences', name: 'Experiences' },
+            { url: '/Students/Travel', name: 'Travel Opportunities' },
+            { url: '/Students/StudentAwards', name: 'Student Awards' }
+          ],
+          active: null,
+          text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
+        }
       }
-      ],
-      active: null
     }
-
-  }
-}
-</script>
+  </script>
