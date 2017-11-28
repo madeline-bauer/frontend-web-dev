@@ -23,10 +23,7 @@
       </v-list>
     </v-navigation-drawer> -->
 
-    <v-toolbar flat color="white">
-      <a href='/#/'>
-        <img :src="require('@/assets/CinCblack.png')" height="40">
-      </a>
+    <v-toolbar flat color="white"  class="hidden-sm-and-down">
       <a href = '/#/'>
         <v-toolbar-title>
           <div class="title">CinC @Furman</div>
@@ -34,7 +31,7 @@
       </a>
 
       <v-spacer></v-spacer>
-      <v-toolbar-items class="hidden-sm-and-down">
+      <v-toolbar-items>
         <v-btn flat exact to='/' >Home</v-btn>
         <v-btn flat exact to='/students'>Students</v-btn>
         <v-btn flat exact to='/faculty'>Faculty</v-btn>
@@ -45,20 +42,30 @@
         <!-- clean up maybe with v-for later -->
       </v-toolbar-items>
     </v-toolbar>
-    <v-list class = "hidden-md-and-up">
-      <v-list-tile
-        value="true"
-        v-for="(item, i) in items"
-        :key="i" :to="item.url"
-      > <!-- why are these always blue?? -->
-        <v-list-tile-action>
-          <v-icon dark v-html="item.icon" class="black--text"></v-icon>
-        </v-list-tile-action>
-        <v-list-tile-content>
-          <v-list-tile-title v-text="item.title" class="black--text"></v-list-tile-title>
-        </v-list-tile-content>
-      </v-list-tile>
-    </v-list>
+    <v-expansion-panel class = "hidden-md-and-up">
+    <v-expansion-panel-content>
+      <div slot="header">
+        <v-layout align-center>
+              <div class="title pl-2">CinC @Furman</div>
+        </v-layout>
+      </div>
+      <v-list>
+        <v-list-tile
+          value="true"
+          v-for="(item, i) in items"
+          :key="i" :to="item.url"
+        >
+          <v-list-tile-action>
+            <v-icon dark v-html="item.icon" class="black--text"></v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title v-text="item.title" class="black--text"></v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+      </v-list>
+    </v-expansion-panel-content>
+  </v-expansion-panel>
+
 
     <main>
       <v-container fluid>
@@ -92,7 +99,7 @@
 
 <style>
 .title {
-  text-decoration: none;
   color: black;
+  height: 25px;
 }
 </style>
