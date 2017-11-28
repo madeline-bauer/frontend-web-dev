@@ -23,49 +23,34 @@
       </v-list>
     </v-navigation-drawer> -->
 
-    <v-toolbar flat color="white"  class="hidden-sm-and-down">
-      <a href = '/#/'>
-        <v-toolbar-title>
-          <div class="title">CinC @Furman</div>
-        </v-toolbar-title>
-      </a>
-
+    <v-toolbar flat color="white">
+      <v-toolbar-title>Computing in Community</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-toolbar-items>
+      <v-toolbar-items class="hidden-sm-and-down">
         <v-btn flat exact to='/' >Home</v-btn>
         <v-btn flat exact to='/students'>Students</v-btn>
         <v-btn flat exact to='/faculty'>Faculty</v-btn>
         <v-btn flat exact to='/courses'>Courses</v-btn>
-        <v-btn flat exact to='/community'>Community</v-btn>
+        <v-btn flat exact to='/community'>Community Partners</v-btn>
         <v-btn flat exact to='/calendar'>Calendar</v-btn>
         <v-btn flat exact to='/blog'>Blog</v-btn>
         <!-- clean up maybe with v-for later -->
       </v-toolbar-items>
     </v-toolbar>
-    <v-expansion-panel class = "hidden-md-and-up">
-    <v-expansion-panel-content>
-      <div slot="header">
-        <v-layout align-center>
-              <div class="title pl-2">CinC @Furman</div>
-        </v-layout>
-      </div>
-      <v-list>
-        <v-list-tile
-          value="true"
-          v-for="(item, i) in items"
-          :key="i" :to="item.url"
-        >
-          <v-list-tile-action>
-            <v-icon dark v-html="item.icon" class="black--text"></v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title v-text="item.title" class="black--text"></v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
-      </v-list>
-    </v-expansion-panel-content>
-  </v-expansion-panel>
-
+    <v-list class = "hidden-md-and-up">
+      <v-list-tile
+        value="true"
+        v-for="(item, i) in items"
+        :key="i" :to="item.url"
+      > <!-- why are these always blue?? -->
+        <v-list-tile-action>
+          <v-icon dark v-html="item.icon"></v-icon>
+        </v-list-tile-action>
+        <v-list-tile-content>
+          <v-list-tile-title v-text="item.title"></v-list-tile-title>
+        </v-list-tile-content>
+      </v-list-tile>
+    </v-list>
 
     <main>
       <v-container fluid>
@@ -86,7 +71,7 @@
           { icon: 'person', title: 'Students', url: '/students' },
           { icon: 'local_library', title: 'Faculty', url: '/faculty' },
           { icon: 'school', title: 'Courses', url: '/courses' },
-          { icon: 'people', title: 'Community', url: '/community' },
+          { icon: 'people', title: 'Community Partners', url: '/community' },
           { icon: 'today', title: 'Calendar', url: '/calendar' },
           { icon: 'web', title: 'Blog', url: '/blog' },
         ],
@@ -96,10 +81,3 @@
     }
   }
 </script>
-
-<style>
-.title {
-  color: black;
-  height: 25px;
-}
-</style>

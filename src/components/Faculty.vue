@@ -37,7 +37,6 @@
         <v-card flat>
           <v-card-text>{{tab.text}}</v-card-text>
         </v-card>
-
       </v-tabs-content>
     </v-tabs-items>
   </v-tabs>
@@ -74,3 +73,4 @@ export default {
   }
 }
 </script>
+

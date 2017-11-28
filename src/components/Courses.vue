@@ -16,83 +16,9 @@
   </section>
 
   <section>
-    <v-layout row justify-space-around wrap>
-
-      <v-flex xs12 md3>
-        <v-card  class="my-3" >
-          <v-card-title primary-title>
-            <div class="headline">Lorem Ipsum</div>
-          </v-card-title>
-          <v-card-text>
-            <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-              sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </div>
-          </v-card-text>
-          <v-card-actions>
-            <v-dialog v-model="dialog" persistent max-width="600px">
-              <v-btn flat slot="activator">Suggest a Course</v-btn>
-              <v-card>
-                <v-form v-model="valid" ref="form" lazy-validation>
-                  <v-card-title>
-                    <span class="headline">Suggest a Course</span>
-                  </v-card-title>
-                  <v-card-text>
-                    <v-container grid-list-md>
-                      <v-layout wrap>
-                        <v-flex xs12>
-                          <v-text-field
-                            label="Name"
-                            v-model="name"
-                            :rules="rules"
-                            required
-                          >
-                          </v-text-field>
-                        </v-flex>
-                        <v-flex xs12>
-                          <v-text-field
-                            label="Term"
-                            v-model="term"
-                            :rules="rules"
-                            required
-                          >
-                          </v-text-field>
-                        </v-flex>
-                        <v-flex xs12>
-                          <v-text-field
-                            label="Description"
-                            v-model="description"
-                            :rules="rules"
-                            required
-                          >
-                          </v-text-field>
-                        </v-flex>
-                        <v-flex xs12>
-                          <v-text-field
-                            label="Instructor"
-                            v-model="instructor"
-                            :rules="rules"
-                            required
-                          >
-                          </v-text-field>
-                        </v-flex>
-
-                      </v-layout>
-                    </v-container>
-                    <small>*indicates required field</small>
-                  </v-card-text>
-                  <v-card-actions>
-                    <v-spacer></v-spacer>
-                    <v-btn flat @click="submit" :disabled="!valid">Submit</v-btn>
-                    <v-btn flat @click.native="dialog = false">Close</v-btn>
-                  </v-card-actions>
-                </v-form>
-              </v-card>
-            </v-dialog>
-          </v-card-actions>
-        </v-card>
-      </v-flex>
-      <v-flex xs12 md8>
-        <v-card class="my-3">
+    <v-container fill-height fluid>
+      <v-flex xs12 md8 offset-md2>
+        <v-card>
           <v-card-title class="headline">
             Existing Cinc Courses
             <v-spacer></v-spacer>
@@ -113,6 +39,8 @@
               <td class="text-xs-right">{{ props.item.name }}</td>
               <td class="text-xs-right">{{ props.item.term }}</td>
               <td class="text-xs-right">{{ props.item.description }}</td>
+              <td class="text-xs-right">{{ props.item.location }}</td>
+              <td class="text-xs-right">{{ props.item.meeting }}</td>
               <td class="text-xs-right">{{ props.item.instructor }}</td>
             </template>
             <template slot="pageText" scope="{ pageStart, pageStop }">
@@ -121,10 +49,10 @@
           </v-data-table>
         </v-card>
       </v-flex>
-      <v-flex xs12 md3>
-      </v-flex>
-      <v-flex xs12 md8>
-        <v-card class="my-3">
+    </v-container>
+    <v-container fill-height fluid>
+      <v-flex xs12 md8 offset-md2>
+        <v-card>
           <v-card-title class="headline">
             Suggested Cinc Courses
             <v-spacer></v-spacer>
@@ -145,6 +73,8 @@
               <td class="text-xs-right">{{ props.item.name }}</td>
               <td class="text-xs-right">{{ props.item.term }}</td>
               <td class="text-xs-right">{{ props.item.description }}</td>
+              <td class="text-xs-right">{{ props.item.location }}</td>
+              <td class="text-xs-right">{{ props.item.meeting }}</td>
               <td class="text-xs-right">{{ props.item.instructor }}</td>
             </template>
             <template slot="pageText" scope="{ pageStart, pageStop }">
@@ -153,19 +83,14 @@
           </v-data-table>
         </v-card>
       </v-flex>
-
-
-    </v-layout>
-
+    </v-container>
   </section>
 
 
 </main>
 </template>
 
-
 <script>
-  import axios from 'axios';
   export default {
     data () {
       return {
@@ -174,51 +99,55 @@
         search: '',
         pagination: {},
         headers: [
-          { text: 'Courses', value: 'name' },
+          {
+            text: 'Courses', value: 'name' },
           { text: 'Term', value: 'term' },
           { text: 'Description', value: 'description' },
+          { text: 'Location', value: 'location' },
+          { text: 'Meeting Time', value: 'meeting' },
           { text: 'Instructor(s)', value: 'instructor' }
         ],
-        existingCourses: [],
-        suggestedCourses: [],
-        dialog: false,
-        valid: true,
-        name: '',
-        term: '',
-        description:'',
-        instructor:'',
-        rules: [
-            (v) => !!v || 'Item is required'
+        existingCourses: [
+          {
+            value: false,
+            name: 'CSC-342',
+            term: 'Fall 2017',
+            description: 'Web-based application design',
+            location: 'Riley 204',
+            meeting: 'MWF 11:30-12:20',
+            instructor: 'Treu',
+          },
+          {
+            value: false,
+            name: 'CSC-105',
+            term: 'Spring 2018',
+            description: 'Introduction to Computer Science',
+            location: 'Riley 108',
+            meeting: 'TR 11:00-12:15',
+            instructor: 'Tartaro',
+          }
         ],
+        suggestedCourses: [
+          {
+            value: false,
+            name: 'CSC-999',
+            term: 'Fall 9999',
+            description: 'CLASSSS',
+            location: 'Everywhere',
+            meeting: 'Always',
+            instructor: 'Everyone',
+          },
+          {
+            value: false,
+            name: 'CSC-000',
+            term: 'Spring 0000',
+            description: '------',
+            location: 'Nowhere',
+            meeting: 'Never',
+            instructor: 'No one',
+          }
+        ]
       }
-    },
-      created() {
-        axios.get('http://localhost:3000/courses')
-          .then(response => {
-            var size = response.data.length;
-            var i;
-            for (i = 0; i < size; i++){
-              if (response.data[i].type === 'offered' && response.data[i].approved){
-                this.existingCourses.push({
-                  value: false,
-                  name: response.data[i].name,
-                  term: response.data[i].when,
-                  description: response.data[i].description,
-                  instructor: response.data[i].profname,
-                });
-              }
-              else if (response.data[i].type === 'suggested' && response.data[i].approved){
-                this.suggestedCourses.push({
-                  value: false,
-                  name: response.data[i].name,
-                  term: response.data[i].when,
-                  description: response.data[i].description,
-                  instructor: response.data[i].profname,
-                });
-              }
-            }
-          })
-      }
-
+    }
   }
 </script>
