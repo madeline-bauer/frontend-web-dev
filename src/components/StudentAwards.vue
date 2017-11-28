@@ -1,14 +1,26 @@
 <template>
   <v-layout row>
-    <v-flex xs12 sm6 offset-sm3 class="py-3 px-3">
+    <v-flex xs12 md3 class="py-3 px-3">
+      <v-card >
+        <v-card-title primary-title>
+          <div class="headline">Lorem Ipsum</div>
+        </v-card-title>
+        <v-card-text>
+          <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </div>
+        </v-card-text>
+      </v-card>
+    </v-flex>
+    <v-flex xs12 sm8 class="py-3 px-3">
       <v-card>
-        <v-list two-line>
+        <v-list three-line>
           <template v-for="item in items">
             <v-subheader v-if="item.header" v-text="item.header"></v-subheader>
             <v-divider v-else-if="item.divider" v-bind:inset="item.inset"></v-divider>
-            <v-list-tile avatar v-else v-bind:key="item.title" @click="">
+            <v-list-tile avatar v-else v-bind:key="item.title">
               <v-list-tile-avatar>
-                <img v-bind:src="item.avatar">
+                <img v-bind:src="item.avatar"/>
               </v-list-tile-avatar>
               <v-list-tile-content>
                 <v-list-tile-title v-html="item.title"></v-list-tile-title>
@@ -22,16 +34,17 @@
   </v-layout>
 </template>
 
+
 <script>
   export default {
     data () {
       return {
         items: [
-          { avatar: '@/assets/Carina.jpg', title: 'X Award', subtitle: "<span class='grey--text text--darken-2'>Ali Connors</span> — I'll be in your neighborhood doing errands this weekend. Do you want to hang out?" },
+          { avatar: require('@/assets/Carina.jpg'), title: 'X Award', subtitle: "<span class='grey--text text--darken-2'>Ali Connors</span> — This award is a cool award." },
           { divider: true, inset: true },
-          { avatar: '@/assets/Madeline.jpg', title: 'Y Award', subtitle: "<span class='grey--text text--darken-2'>to Alex, Scott, Jennifer</span> — Wish I could come, but I'm out of town this weekend." },
+          { avatar: require('@/assets/Madeline.jpg'), title: 'Y Award', subtitle: "<span class='grey--text text--darken-2'>Alex, Scott, Jennifer</span> — This award was given because these people are really smart. Like, so smart. And talented. And hard-working. The smartest talentedest hard-workingest people." },
           { divider: true, inset: true },
-          { avatar: '@/assets/Treu.jpg', title: 'Z Award', subtitle: "<span class='grey--text text--darken-2'>Sandra Adams</span> — Do you have Paris recommendations? Have you ever been?" }
+          { avatar: require('@/assets/Treu.jpg'), title: 'Z Award', subtitle: "<span class='grey--text text--darken-2'>Sandra Adams</span> — This award isn't as good." }
         ]
       }
     }

@@ -23,7 +23,7 @@
               :ripple="{ class: 'grey--text text--lighten-2' }"
               :to="tab.url"
             >
-              <div class="black--text">
+              <div class="white--text">
                 {{ tab.name }}
               </div>
             </v-tabs-item>
