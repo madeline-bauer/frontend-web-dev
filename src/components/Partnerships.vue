@@ -1,7 +1,7 @@
 <template>
   <div
   id="e3"
-  class="grey lighten-3 py-3 px-3"
+  class="py-3 px-3"
   style="max-width: 1000px; margin: auto;"
   >
   <v-container

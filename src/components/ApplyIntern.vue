@@ -10,6 +10,11 @@
             sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </div>
         </v-card-text>
+        <v-btn flat
+          >
+          Upload
+          <v-icon class = "black--text" right dark>cloud_upload</v-icon>
+        </v-btn>
       </v-card>
     </v-flex>
     <v-flex xs12 md9 class="px-3 py-3">
