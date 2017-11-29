@@ -20,9 +20,9 @@
                 <div>Description 1</div>
               </div>
             </v-flex>
-            <v-flex xs5>
+            <v-flex xs5 offset-md5>
               <v-card-media
-              src="/static/doc-images/cards/foster.jpg"
+              :src="require('@/assets/Madeline.jpg')"
               height="125px"
               contain
               ></v-card-media>
@@ -41,9 +41,9 @@
                 <div>Description 2</div>
               </div>
             </v-flex>
-            <v-flex xs5>
+            <v-flex xs5 offset-md5>
               <v-card-media
-              src="/static/doc-images/cards/halcyon.png"
+              :src="require('@/assets/Madeline.jpg')"
               height="125px"
               contain
               ></v-card-media>
@@ -62,9 +62,9 @@
                 <div>Description 3</div>
               </div>
             </v-flex>
-            <v-flex xs5>
+            <v-flex xs5 offset-md5>
               <v-card-media
-              src="/static/doc-images/cards/halcyon.png"
+              :src="require('@/assets/Madeline.jpg')"
               height="125px"
               contain
               ></v-card-media>
