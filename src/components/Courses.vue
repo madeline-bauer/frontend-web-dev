@@ -192,33 +192,52 @@
         ],
       }
     },
-      created() {
-        axios.get('http://localhost:3000/courses')
-          .then(response => {
-            var size = response.data.length;
-            var i;
-            for (i = 0; i < size; i++){
-              if (response.data[i].type === 'offered' && response.data[i].approved){
-                this.existingCourses.push({
-                  value: false,
-                  name: response.data[i].name,
-                  term: response.data[i].when,
-                  description: response.data[i].description,
-                  instructor: response.data[i].profname,
-                });
-              }
-              else if (response.data[i].type === 'suggested' && response.data[i].approved){
-                this.suggestedCourses.push({
-                  value: false,
-                  name: response.data[i].name,
-                  term: response.data[i].when,
-                  description: response.data[i].description,
-                  instructor: response.data[i].profname,
-                });
-              }
+    created() {
+      axios.get('http://localhost:3000/courses')
+        .then(response => {
+          var size = response.data.length;
+          var i;
+          for (i = 0; i < size; i++){
+            if (response.data[i].type === 'offered' && response.data[i].approved){
+              this.existingCourses.push({
+                value: false,
+                name: response.data[i].name,
+                term: response.data[i].when,
+                description: response.data[i].description,
+                instructor: response.data[i].profname,
+              });
             }
+            else if (response.data[i].type === 'suggested' && response.data[i].approved){
+              this.suggestedCourses.push({
+                value: false,
+                name: response.data[i].name,
+                term: response.data[i].when,
+                description: response.data[i].description,
+                instructor: response.data[i].profname,
+              });
+            }
+          }
+        })
+    },
+    methods: {
+      submit() {
+        var obj = new Object();
+        obj.name = this.name;
+        obj.when= this.term;
+        obj.description = this.description;
+        obj.profname = this.instructor;
+        obj.approved = false;
+        obj.type = "suggested";
+        console.log(this.name + this.term+ this.description + this.instructor)
+        axios.post('http://localhost:3000/courses', obj)
+        .then(function (response) {
+            console.log(response);
           })
-      }
+        this.dialog = false;
+
+      },
+    }
+
 
   }
 </script>

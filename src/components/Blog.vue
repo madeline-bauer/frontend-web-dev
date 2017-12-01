@@ -101,8 +101,56 @@
                 </v-container>
               </v-card-text>
               <v-card-actions>
-                <v-btn flat @click="">Edit</v-btn>
-                <v-btn flat @click="">Delete</v-btn>
+                  <v-dialog v-model="editDialog" persistent width="600px">
+                    <v-btn flat slot="activator">Edit</v-btn>
+                    <v-card>
+                      <v-card-title>
+                        <span class="headline">Edit This Entry</span>
+                      </v-card-title>
+                      <v-card-text>
+                        <v-container grid-list-md>
+                          <v-layout wrap>
+                            <v-flex xs12>
+                              <v-text-field
+                                label="Name"
+                                v-model="post.author"
+                                :rules="rules"
+                                required
+                              >
+                              </v-text-field>
+                            </v-flex>
+                            <v-flex xs12>
+                              <v-text-field
+                                label="Title"
+                                v-model="post.title"
+                                :rules="rules"
+                                required
+                              >
+                              </v-text-field>
+                            </v-flex>
+                            <v-flex xs12>
+                              <v-text-field
+                                name="input-7-1"
+                                label="Body"
+                                v-model="post.content"
+                                :rules="rules"
+                                multi-line
+                                required
+                              >
+                              </v-text-field>
+                            </v-flex>
+                          </v-layout>
+                        </v-container>
+                        <small>*indicates required field</small>
+                      </v-card-text>
+                      <v-card-actions>
+                        <v-spacer></v-spacer>
+                        <v-btn flat @click="" :disabled="!valid">Submit</v-btn>
+                        <v-btn flat @click.native="editDialog = false">Close</v-btn>
+                      </v-card-actions>
+                    </v-card>
+                  </v-dialog>
+                <v-btn flat @click="deleteEntry()">Delete</v-btn>
               </v-card-actions>
             </v-card>
           </div>
@@ -120,6 +168,7 @@ export default {
   data () {
     return {
       dialog: false,
+      editDialog: false,
       valid: true,
       name: '',
       title: '',
@@ -160,6 +209,12 @@ export default {
           console.log(response);
         })
       this.dialog = false
+    },
+    deleteEntry(postId) {
+      console.log(postId)
+      axios.delete('http://localhost:3000/posts', {
+        params: { _id: postId }
+      })
     }
   }
 }
