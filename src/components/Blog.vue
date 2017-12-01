@@ -146,6 +146,21 @@ export default {
           }
         }
       })
+  },
+  methods: {
+    submit() {
+      var obj = new Object();
+      obj.authorName = this.name;
+      obj.title = this.title;
+      obj.text = this.body;
+      obj.approved = false;
+      console.log(this.name + this.title + this.body)
+      axios.post('http://localhost:3000/posts', obj)
+      .then(function (response) {
+          console.log(response);
+        })
+      this.dialog = false
+    }
   }
 }
 </script>
