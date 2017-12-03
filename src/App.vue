@@ -97,5 +97,6 @@
 .title {
   text-decoration: none;
   color: black;
+  height: 25px;
 }
 </style>

@@ -10,7 +10,6 @@
             class="white--text"
           >
             <img :src="require('@/assets/CinCwhite.png')" alt="Computing in Community" height="300">
-            <h4>Computing in Community</h4>
           </v-layout>
         </v-parallax>
       </section>
