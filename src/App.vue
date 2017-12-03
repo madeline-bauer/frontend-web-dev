@@ -24,7 +24,9 @@
     </v-navigation-drawer> -->
 
     <v-toolbar flat color="white">
-      <v-toolbar-title>Computing in Community</v-toolbar-title>
+      <a href='/#/'>
+        <v-toolbar-title class="title">Computing in Community</v-toolbar-title>
+      </a>
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-sm-and-down">
         <v-btn flat exact to='/' >Home</v-btn>
@@ -44,10 +46,10 @@
         :key="i" :to="item.url"
       > <!-- why are these always blue?? -->
         <v-list-tile-action>
-          <v-icon dark v-html="item.icon"></v-icon>
+          <v-icon dark v-html="item.icon" class="black--text"></v-icon>
         </v-list-tile-action>
         <v-list-tile-content>
-          <v-list-tile-title v-text="item.title"></v-list-tile-title>
+          <v-list-tile-title v-text="item.title" class="black--text"></v-list-tile-title>
         </v-list-tile-content>
       </v-list-tile>
     </v-list>
@@ -81,3 +83,10 @@
     }
   }
 </script>
+
+<style>
+.title {
+  text-decoration: none;
+  color: black;
+}
+</style>
