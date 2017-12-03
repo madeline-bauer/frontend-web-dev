@@ -26,21 +26,75 @@
             <v-layout fill-height>
               <v-flex xs12 align-end flexbox>
                 <span class="headline">{{ post.title }}</span>
-              </v-flex>
-            </v-layout>
-          </v-container>
-        </v-card-media>
-        <v-card-text>
-          {{ post.content }}
-        </v-card-text>
-        <v-card-actions>
-          <v-btn flat v-on:click="">Edit</v-btn>
-          <v-btn flat v-on:click="">Delete</v-btn>
-        </v-card-actions>
-      </v-card>
-    </div>
-  </v-flex>
-</section>
+              </v-card-title>
+              <v-card-text>
+                <span>{{ post.content }}</span>
+                <v-container>
+                  <v-flex xs12>
+                    <span>- {{ post.author }}</span>
+                  </v-flex>
+                  <v-flex xs12>
+                    <span>{{ post.date }}</span>
+                  </v-flex>
+                </v-container>
+              </v-card-text>
+              <v-card-actions>
+                  <v-dialog v-model="editDialog" persistent width="600px">
+                    <v-btn flat slot="activator">Edit</v-btn>
+                    <v-card>
+                      <v-card-title>
+                        <span class="headline">Edit This Entry</span>
+                      </v-card-title>
+                      <v-card-text>
+                        <v-container grid-list-md>
+                          <v-layout wrap>
+                            <v-flex xs12>
+                              <v-text-field
+                                label="Name"
+                                v-model="post.author"
+                                :rules="rules"
+                                required
+                              >
+                              </v-text-field>
+                            </v-flex>
+                            <v-flex xs12>
+                              <v-text-field
+                                label="Title"
+                                v-model="post.title"
+                                :rules="rules"
+                                required
+                              >
+                              </v-text-field>
+                            </v-flex>
+                            <v-flex xs12>
+                              <v-text-field
+                                name="input-7-1"
+                                label="Body"
+                                v-model="post.content"
+                                :rules="rules"
+                                multi-line
+                                required
+                              >
+                              </v-text-field>
+                            </v-flex>
+                          </v-layout>
+                        </v-container>
+                        <small>*indicates required field</small>
+                      </v-card-text>
+                      <v-card-actions>
+                        <v-spacer></v-spacer>
+                        <v-btn flat @click="" :disabled="!valid">Submit</v-btn>
+                        <v-btn flat @click.native="editDialog = false">Close</v-btn>
+                      </v-card-actions>
+                    </v-card>
+                  </v-dialog>
+                <v-btn flat @click="deleteEntry()">Delete</v-btn>
+              </v-card-actions>
+            </v-card>
+          </div>
+        </v-flex>
+      </v-layout>
+    </section>
 
 
 </main>
@@ -50,23 +104,54 @@
 export default {
   data () {
     return {
-      posts: [
-        {
-          id: 1,
-          title: 'Fusce ullamcorper tellus sed maximus',
-          content: 'Fusce ullamcorper tellus sed maximus rutrum. Donec imperdiet ultrices maximus. Donec non tellus non neque pellentesque fermentum. Aenean in pellentesque urna.',
-        },
-        {
-          id: 2,
-          title: 'Donec vitae suscipit lectus, a luctus diam.',
-          content: 'Donec vitae suscipit lectus, a luctus diam. Proin vitae felis gravida, lobortis massa sit amet, efficitur erat. Morbi vel ultrices nisi. Aenean arcu sapien, rutrum nec mollis id, condimentum quis orci.',
-        },
-        {
-          id: 3,
-          title: 'Vestibulum condimentum quam eu est convallis',
-          content: ' at sagittis sapien vulputate. Vivamus laoreet lacus id magna rutrum dapibus. Donec vel pellentesque arcu. Maecenas mollis odio tempus felis elementum commodo. Quisque gravida, est quis tincidunt bibendum, nibh elit dapibus mauris.',
+      dialog: false,
+      editDialog: false,
+      valid: true,
+      name: '',
+      title: '',
+      body:'',
+      rules: [
+          (v) => !!v || 'Item is required'
+      ],
+      posts: []
+    }
+  },
+  created() {
+    axios.get('http://localhost:3000/posts')
+      .then(response => {
+        var size = response.data.length;
+        var i;
+        for (i = 0; i < size; i++){
+          if (response.data[i].approved){
+            this.posts.push({
+              title: response.data[i].title,
+              date: response.data[i].postdate,
+              content: response.data[i].text,
+              author: response.data[i].authorName,
+            });
+          }
         }
-      ]
+      })
+  },
+  methods: {
+    submit() {
+      var obj = new Object();
+      obj.authorName = this.name;
+      obj.title = this.title;
+      obj.text = this.body;
+      obj.approved = false;
+      console.log(this.name + this.title + this.body)
+      axios.post('http://localhost:3000/posts', obj)
+      .then(function (response) {
+          console.log(response);
+        })
+      this.dialog = false
+    },
+    deleteEntry(postId) {
+      console.log(postId)
+      axios.delete('http://localhost:3000/posts', {
+        params: { _id: postId }
+      })
     }
   }
 }

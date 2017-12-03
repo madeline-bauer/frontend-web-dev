@@ -43,7 +43,7 @@
                   </v-card>
                 </v-flex>-->
                 <v-flex xs12 md6>
-                  <a href='/#/students'>
+                  <a href='/#/students/ProjectOpportunities'>
                     <v-card hover>
                       <v-card-media
                       height="300px"
@@ -57,7 +57,7 @@
                   </a>
                 </v-flex>
                 <v-flex xs12 md6>
-                  <a href='/#/faculty'>
+                  <a href='/#/faculty/StudentFellow'>
                     <v-card hover>
                       <v-card-media
                       height="300px"
@@ -85,7 +85,7 @@
                   </a>
                 </v-flex>
                 <v-flex xs12 md6>
-                  <a href='/#/community'>
+                  <a href='/#/community/Information'>
                     <v-card hover>
                       <v-card-media
                       height="300px"
