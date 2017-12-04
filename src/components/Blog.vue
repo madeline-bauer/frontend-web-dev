@@ -149,7 +149,7 @@
                     </v-card-actions>
                   </v-card>
                 </v-dialog>
-              <v-btn flat @click="deleteEntry()">Delete</v-btn>
+              <v-btn flat @click="deleteEntry(post._id)">Delete</v-btn>
             </v-card-actions>
           </v-card>
         </div>
@@ -190,6 +190,7 @@ export default {
               date: response.data[i].postdate,
               content: response.data[i].text,
               author: response.data[i].authorName,
+              _id: response.data[i]._id,
             });
           }
         }
@@ -212,7 +213,7 @@ export default {
     deleteEntry(postId) {
       console.log(postId)
       axios.delete('http://localhost:3000/posts', {
-        params: { _id: postId }
+        params: { '_id': postId }
       })
     }
   }
