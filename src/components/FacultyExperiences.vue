@@ -120,7 +120,7 @@ export default {
         var size = response.data.length;
         var i;
         for (i = 0; i < size; i++){
-          if (response.data[i].approved){
+          if (response.data[i].approved && response.data[i].tags.faculty){
             this.posts.push({
               title: response.data[i].title,
               date: response.data[i].postdate,
