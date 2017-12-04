@@ -20,65 +20,74 @@
           class="pb-4"
         >
           <v-flex xs12 class="my-3">
-              <div class="text-xs-center subheading">{{missionStatement}}</div>
+              <div class="stretch text-xs-center subheading">{{missionStatement}}</div>
           </v-flex>
           <v-flex xs12>
             <v-container grid-list-xl>
-              <v-layout row wrap align-center>
+              <v-layout row wrap>
                 <v-flex xs12 md6>
                   <a href='/#/students/ProjectOpportunities'>
-                    <v-card hover>
+                    <v-card class="mainContainer" hover>
                       <v-card-media
                       height="300px"
                       :src="require('@/assets/Madeline.jpg')"
                       >
+                      <v-container fill-height class="mainCard">
+                        <v-layout align-center>
+                            <v-flex class="display-2 white--text text-xs-center">Students</v-flex>
+                        </v-layout>
+                      </v-container>
                       </v-card-media>
-                      <v-card-title primary-title class="layout justify-center">
-                        <div class="headline text-xs-center">Students</div>
-                      </v-card-title>
                     </v-card>
                   </a>
                 </v-flex>
                 <v-flex xs12 md6>
                   <a href='/#/faculty/StudentFellow'>
-                    <v-card hover>
+                    <v-card class="mainContainer" hover>
                       <v-card-media
                       height="300px"
                       :src="require('@/assets/Treu.jpg')"
                       >
+                      <v-container fill-height class="mainCard">
+                        <v-layout align-center>
+                            <v-flex class="display-2 white--text text-xs-center">Faculty</v-flex>
+                        </v-layout>
+                      </v-container>
                       </v-card-media>
-                      <v-card-title primary-title class="layout justify-center">
-                        <div class="headline text-xs-center" >Faculty</div>
-                      </v-card-title>
                     </v-card>
                   </a>
                 </v-flex>
                 <v-flex xs12 md6>
                   <a href='/#/courses'>
-                    <v-card hover>
+                    <v-card class="mainContainer" hover>
                       <v-card-media
                       height="300px"
                       :src="require('@/assets/Class.jpg')"
                       >
+                        <v-container fill-height class="mainCard">
+                          <v-layout align-center>
+                              <v-flex class="display-2 white--text text-xs-center">Courses</v-flex>
+                          </v-layout>
+                        </v-container>
                       </v-card-media>
-                      <v-card-title primary-title class="layout justify-center">
-                        <div class="headline text-xs-center">Courses</div>
-                      </v-card-title>
                     </v-card>
                   </a>
                 </v-flex>
                 <v-flex xs12 md6>
                   <a href='/#/community/Information'>
-                    <v-card hover>
+                    <v-card class="mainContainer" hover>
                       <v-card-media
                       height="300px"
                       :src="require('@/assets/Jasmine.jpg')"
                       >
+                        <v-container fill-height class="mainCard">
+                          <v-layout align-center>
+                              <v-flex class="display-2 white--text text-xs-center">Community</v-flex>
+                          </v-layout>
+                        </v-container>
                       </v-card-media>
-                      <v-card-title primary-title class="layout justify-center">
-                        <div class="headline text-xs-center">Community Partners</div>
-                      </v-card-title>
                     </v-card>
+
                   </a>
                 </v-flex>
               </v-layout>
@@ -145,6 +154,16 @@
 <style>
 a{
   text-decoration:none
+}
+.mainCard{
+  height: 100%;
+  background-color: black;
+  opacity: 0.55;
+  display:none!important;
+}
+.mainContainer:hover .mainCard{
+
+  display: block!important;
 }
 </style>
 
