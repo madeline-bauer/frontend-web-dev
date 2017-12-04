@@ -17,6 +17,7 @@
       <section>
         <v-layout
           column
+          class="pb-4"
         >
           <v-flex xs12 class="my-3">
               <div class="text-xs-center subheading">{{missionStatement}}</div>
@@ -86,6 +87,57 @@
         </v-layout>
       </section>
 
+      <section>
+        <v-parallax :src="require('@/assets/belltowerNight.jpg')" height = "400">
+        </v-parallax>
+      </section>
+
+      <section>
+         <v-container grid-list-xl>
+           <v-layout row wrap align-center class="my-5">
+             <v-flex xs12 md6>
+               <v-card class="elevation-0 transparent">
+                 <v-card-title primary-title class="layout justify-center">
+                   <div class="headline">CinC</div>
+                 </v-card-title>
+                 <v-card-text>
+                   {{siteDescription}}
+                 </v-card-text>
+               </v-card>
+             </v-flex>
+             <v-flex xs10 md4 offset-xs1 offset-md1>
+               <v-card class="elevation-0 transparent">
+                 <v-card-title primary-title class="layout justify-center">
+                   <div class="headline">Social Media</div>
+                 </v-card-title>
+                 <v-card-text>
+                   <v-layout row-wrap align-center>
+                     <v-flex xs4 class="text-xs-center">
+                       <a href="https://www.facebook.com/Furman-University-Computer-Science-130685927004923/" target="_blank">
+                         <img :src="require('@/assets/facebook.svg')" alt="Facebook" height="48">
+                       </a>
+                     </v-flex>
+                     <v-flex xs4 class="text-xs-center">
+                       <a>
+                         <img :src="require('@/assets/twitter.svg')" alt="Twitter" height="48">
+                       </a>
+                     </v-flex>
+                     <v-flex xs4 class="text-xs-center">
+                       <a href="https://www.instagram.com/furmancompsci/" target="_blank">
+                         <img :src="require('@/assets/instagram.svg')" alt="Instagram" height="48">
+                       </a>
+                     </v-flex>
+                   </v-layout>
+               </v-card-text>
+               </v-card>
+             </v-flex>
+           </v-layout>
+         </v-container>
+       </section>
+
+
+
+
 
     </main>
 </template>
@@ -101,17 +153,15 @@ import axios from 'axios';
 export default {
   data() {
     return {
-      missionStatement: ""
+      missionStatement: "",
+      siteDescription: ""
     }
   },
   created() {
-    axios.get('http://localhost:3000/siteContent', {
-        params: {
-          name: 'mission statement'
-        }
-      })
+    axios.get('http://localhost:3000/siteContent')
       .then(response => {
         this.missionStatement = response.data[0].value;
+        this.siteDescription = response.data[1].value;
       })
   }
 }
