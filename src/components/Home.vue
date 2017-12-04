@@ -157,13 +157,13 @@ a{
 }
 .mainCard{
   height: 100%;
-  background-color: black;
+  background-color: #303030;
   opacity: 0.55;
   display:none!important;
 }
 .mainContainer:hover .mainCard{
-
   display: block!important;
+
 }
 </style>
 
