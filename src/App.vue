@@ -17,7 +17,7 @@
         <!-- clean up maybe with v-for later -->
       </v-toolbar-items>
     </v-toolbar>
-    <v-expansion-panel class = "hidden-md-and-up">
+    <v-expansion-panel class = "hidden-md-and-up elevation-0">
       <v-expansion-panel-content>
         <div slot="header">
           <v-layout align-center>
