@@ -9,15 +9,6 @@ import './stylus/main.styl'
 import App from './App'
 import router from './router'
 
-import 'vue-event-calendar/dist/style.css'
-import vueEventCalendar from 'vue-event-calendar'
-
-Vue.use(vueEventCalendar,
-  {
-    locale: 'en',
-    color: 'gray'
-  })
-
 Vue.use(Vuetify)
 
 Vue.config.productionTip = false
