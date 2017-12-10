@@ -6,6 +6,46 @@
     <title>frontend</title>
     <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet" type="text/css">
   </head>
+  <script src="https://cdn.auth0.com/js/lock/10.24.1/lock.min.js"></script>
+  <script>
+  var lock = new Auth0Lock('5Ujwjm2HvaKjDl9fHwwdO_4qO8E0USqV', 'furman.auth0.com', {
+  auth: {
+    redirectUrl: 'http://localhost:8081/#/',
+    responseType: 'token',
+    params: {
+      scope: 'openid email' // Learn about scopes: https://auth0.com/docs/scopes
+    }
+  }
+  });
+  lock.on("authenticated", function(authResult) {
+    localStorage.setItem('testpre', 'testwords');
+    lock.getUserInfo(authResult.accessToken, function(error, profile) {
+        if (error) {
+          // Handle error
+          localStorage.setItem('testfail', 'testwords');
+          document.write("failure to retrieve profile")
+          return;
+        }
+        //sets insadmin to true for use in front end
+        //this.isadmin=true;
+        localStorage.setItem('testpost1', 'testwords');
+        localStorage.setItem('accessToken', authResult.accessToken);
+        localStorage.setItem('testpost2', 'testwords');
+        //var temp=localStorage.getItem("accessToken");
+        //localStorage.setItem('accesstokenclean', temp);
+        //localStorage.setItem('profile', JSON.stringify(profile));
+        //isadmin=true; //added
+      });
+    });
+    var token=localStorage.getItem("accessToken");
+      if(token){
+        this.isadmin=true;
+      }
+    //var token=localStorage.getItem("accessToken");
+    //if(token){
+     // this.isadmin=true;
+    //}
+  </script>
   <body>
     <div id="app"></div>
     <!-- built files will be auto injected -->

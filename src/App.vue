@@ -66,11 +66,11 @@
         ],
         miniVariant: false,
         rightDrawer: false,
+        //isadmin: false,
       }
     }
   }
 </script>
-
 <style>
 .title {
   text-decoration: none;
