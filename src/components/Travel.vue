@@ -4,82 +4,40 @@
   class="py-3 px-3"
   style="max-width: 1000px; margin: auto;"
   >
-  <v-container
-  fluid
-  style="min-height: 0;"
-  grid-list-lg
-  >
-  <v-layout row wrap>
-    <div v-for="post in posts" :key="post.id">
-      <v-flex xs12>
-        <v-card color="white" class="black--text" hover>
-          <v-container fluid grid-list-lg>
-            <v-layout row>
-              <v-flex xs7>
-                <div>
-                  <div class="headline">{{post.title}}</div>
-                  <div>{{post.description}}</div>
-                </div>
-              </v-flex>
-              <v-flex xs5 offset-md5>
-                <v-card-media
-                :src="require('@/assets/Madeline.jpg')"
-                height="125px"
-                contain
-                ></v-card-media>
-              </v-flex>
-            </v-layout>
-          </v-container>
-        </v-card>
-      </v-flex>
-    </div>
+    <v-container
+      fluid
+      style="min-height: 0;"
+      grid-list-lg
+    >
+      <div v-for="post in posts" :key="post.id">
+        <v-layout row wrap>
 
-    <v-flex xs12>
-      <v-card color="white" class="black--text" hover>
-        <v-container fluid grid-list-lg>
-          <v-layout row>
-            <v-flex xs7>
-              <div>
-                <div class="headline">Travel 2</div>
-                <div>Description 2</div>
-              </div>
-            </v-flex>
-            <v-flex xs5 offset-md5>
-              <v-card-media
-              :src="require('@/assets/Madeline.jpg')"
-              height="125px"
-              contain
-              ></v-card-media>
-            </v-flex>
-          </v-layout>
-        </v-container>
-      </v-card>
-    </v-flex>
-    <v-flex xs12>
-      <v-card color="white" class="black--text" hover>
-        <v-container fluid grid-list-lg>
-          <v-layout row>
-            <v-flex xs7>
-              <div>
-                <div class="headline">Travel 3</div>
-                <div>Description 3</div>
-              </div>
-            </v-flex>
-            <v-flex xs5 offset-md5>
-              <v-card-media
-              :src="require('@/assets/Madeline.jpg')"
-              height="125px"
-              contain
-              ></v-card-media>
-            </v-flex>
-          </v-layout>
-        </v-container>
-      </v-card>
-    </v-flex>
+          <v-flex xs12>
+            <v-card color="white" class="black--text" hover>
+              <v-container fluid grid-list-lg>
+                <v-layout row>
+                  <v-flex xs7>
+                    <div>
+                      <div class="headline">{{post.title}}</div>
+                      <div>{{post.description}}</div>
+                    </div>
+                  </v-flex>
+                  <v-flex xs5 offset-md5>
+                    <v-card-media
+                    :src="post.avatar"
+                    height="125px"
+                    contain
+                    ></v-card-media>
+                  </v-flex>
+                </v-layout>
+              </v-container>
+            </v-card>
+          </v-flex>
+        </v-layout>
+      </div>
 
-  </v-layout>
-</v-container>
-</div>
+    </v-container>
+  </div>
 </template>
 
 <script>
@@ -100,6 +58,7 @@ export default {
             this.posts.push({
               title: response.data[i].travel,
               description: response.data[i].description,
+              avatar: require('@/assets/BellTower.png')
             });
           }
         }

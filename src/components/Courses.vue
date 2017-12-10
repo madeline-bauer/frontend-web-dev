@@ -329,11 +329,11 @@
         })
           .then(response => {
             var obj = response.data;
-            console.log(response.data + obj.name + obj.term+ obj.description + obj.instructor)
-            axios.post('http://localhost:3000/courses', obj)
-            .then(function (response) {
-                console.log(response);
-                })
+            console.log(response.data, courseId)
+            //axios.post('http://localhost:3000/courses', obj)
+            //.then(function (response) {
+            //    console.log(response);
+            //    })
           })
 
       } //not functional yet

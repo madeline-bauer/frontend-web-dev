@@ -85,7 +85,7 @@
           </v-card-text>
           <v-card-actions>
             <v-btn flat @click="">Edit</v-btn>
-            <v-btn flat @click="">Delete</v-btn>
+            <v-btn flat @click="deleteEntry(post._id)">Delete</v-btn>
           </v-card-actions>
         </v-card>
       </div>
@@ -122,6 +122,7 @@ export default {
               date: response.data[i].postdate,
               content: response.data[i].text,
               author: response.data[i].authorName,
+              _id: response.data[i]._id,
             });
           }
         }

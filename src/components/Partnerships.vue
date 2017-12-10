@@ -25,7 +25,7 @@
               </v-flex>
               <v-flex xs5 offset-md5>
                 <v-card-media
-                :src="require('@/assets/Madeline.jpg')"
+                :src="post.avatar"
                 height="125px"
                 contain
                 ></v-card-media>
@@ -59,6 +59,7 @@ export default {
               name: response.data[i].name,
               description: response.data[i].description,
               website: response.data[i].website,
+              avatar: require('@/assets/BellTower.png'),
             });
           }
         }

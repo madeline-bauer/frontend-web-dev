@@ -215,6 +215,7 @@ export default {
       axios.delete('http://localhost:3000/posts', {
         data: { _id: postId } // use data: not params. data is the request body, params are part of the url string -tcj 12-5-17
       })
+      window.location.reload(true); //messy way to show changes
     }
   }
 }
