@@ -10,27 +10,30 @@
   grid-list-lg
   >
   <v-layout row wrap>
-    <v-flex xs12>
-      <v-card color="white" class="black--text" hover>
-        <v-container fluid grid-list-lg>
-          <v-layout row>
-            <v-flex xs7>
-              <div>
-                <div class="headline">Travel 1</div>
-                <div>Description 1</div>
-              </div>
-            </v-flex>
-            <v-flex xs5 offset-md5>
-              <v-card-media
-              :src="require('@/assets/Madeline.jpg')"
-              height="125px"
-              contain
-              ></v-card-media>
-            </v-flex>
-          </v-layout>
-        </v-container>
-      </v-card>
-    </v-flex>
+    <div v-for="post in posts" :key="post.id">
+      <v-flex xs12>
+        <v-card color="white" class="black--text" hover>
+          <v-container fluid grid-list-lg>
+            <v-layout row>
+              <v-flex xs7>
+                <div>
+                  <div class="headline">{{post.title}}</div>
+                  <div>{{post.description}}</div>
+                </div>
+              </v-flex>
+              <v-flex xs5 offset-md5>
+                <v-card-media
+                :src="require('@/assets/Madeline.jpg')"
+                height="125px"
+                contain
+                ></v-card-media>
+              </v-flex>
+            </v-layout>
+          </v-container>
+        </v-card>
+      </v-flex>
+    </div>
+
     <v-flex xs12>
       <v-card color="white" class="black--text" hover>
         <v-container fluid grid-list-lg>
@@ -73,10 +76,38 @@
         </v-container>
       </v-card>
     </v-flex>
+
   </v-layout>
 </v-container>
 </div>
 </template>
+
+<script>
+import axios from 'axios';
+export default {
+  data () {
+    return {
+      posts: []
+    }
+  },
+  created() {
+    axios.get('http://localhost:3000/travel')
+      .then(response => {
+        var size = response.data.length;
+        var i;
+        for (i = 0; i < size; i++){
+          if (response.data[i].approved){
+            this.posts.push({
+              title: response.data[i].travel,
+              description: response.data[i].description,
+            });
+          }
+        }
+      })
+  },
+
+}
+</script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>

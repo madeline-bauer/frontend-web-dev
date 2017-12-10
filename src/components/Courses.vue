@@ -91,6 +91,7 @@
           </v-card-actions>
         </v-card>
       </v-flex>
+
       <v-flex xs12 md8>
         <v-card class="my-3">
           <v-card-title class="headline">
@@ -121,8 +122,10 @@
           </v-data-table>
         </v-card>
       </v-flex>
+
       <v-flex xs12 md3>
       </v-flex>
+
       <v-flex xs12 md8>
         <v-card class="my-3">
           <v-card-title class="headline">
@@ -154,6 +157,70 @@
         </v-card>
       </v-flex>
 
+      <v-flex xs12 md3>
+      </v-flex>
+
+      <v-flex xs12 md8>
+        <v-card class="my-3">
+          <v-card-title class="headline">
+            Suggested Unapproved Cinc Courses
+            <v-spacer></v-spacer>
+            <v-text-field
+            append-icon="search"
+            label="Search"
+            single-line
+            hide-details
+            v-model="search"
+            ></v-text-field>
+          </v-card-title>
+          <v-data-table
+          v-bind:headers="headers"
+          v-bind:items="suggestedUnapprovedCourses"
+          v-bind:search="search"
+          >
+            <template slot="items" scope="props">
+              <td class="text-xs-right">{{ props.item.name }}</td>
+              <td class="text-xs-right">{{ props.item.term }}</td>
+              <td class="text-xs-right">{{ props.item.description }}</td>
+              <td class="text-xs-right">{{ props.item.instructor }}</td>
+            </template>
+            <template slot="pageText" scope="{ pageStart, pageStop }">
+              From {{ pageStart }} to {{ pageStop }}
+            </template>
+          </v-data-table>
+        </v-card>
+      </v-flex>
+
+      <v-flex xs12 md3>
+      </v-flex>
+
+      <v-flex xs12 md8>
+        <div v-for="suggestedUnapprovedCourse in suggestedUnapprovedCourses"
+          :key="suggestedUnapprovedCourse.id">
+          <v-card class="my-3">
+            <v-card-title class="headline">
+              {{suggestedUnapprovedCourse.name}}
+              <v-spacer></v-spacer>
+            </v-card-title>
+            <v-card-text>
+              {{suggestedUnapprovedCourse.description}}
+              <v-form v-model="validForm" ref="form" lazy-validation>
+                <v-checkbox
+                  label="Approve"
+                  v-model="suggestedUnapprovedCourse.approved"
+
+                ></v-checkbox>
+
+                <v-btn
+                  flat
+                  @click="submitApprove(suggestedUnapprovedCourse._id)">
+                  Submit
+                </v-btn>
+              </v-form>
+            </v-card-text>
+          </v-card>
+        </div>
+      </v-flex>
 
     </v-layout>
 
@@ -181,8 +248,10 @@
         ],
         existingCourses: [],
         suggestedCourses: [],
+        suggestedUnapprovedCourses: [],
         dialog: false,
         valid: true,
+        validForm: true,
         name: '',
         term: '',
         description:'',
@@ -205,6 +274,7 @@
                 term: response.data[i].when,
                 description: response.data[i].description,
                 instructor: response.data[i].profname,
+                _id: response.data[i]._id,
               });
             }
             else if (response.data[i].type === 'suggested' && response.data[i].approved){
@@ -214,6 +284,18 @@
                 term: response.data[i].when,
                 description: response.data[i].description,
                 instructor: response.data[i].profname,
+                _id: response.data[i]._id,
+              });
+            }
+            else if (response.data[i].type === 'suggested' && !(response.data[i].approved)){
+              this.suggestedUnapprovedCourses.push({
+                value: false,
+                name: response.data[i].name,
+                term: response.data[i].when,
+                description: response.data[i].description,
+                instructor: response.data[i].profname,
+                _id: response.data[i]._id,
+                approved: response.data[i].approved,
               });
             }
           }
@@ -234,8 +316,28 @@
             console.log(response);
           })
         this.dialog = false;
-
       },
+      deleteEntry(courseId) {
+        console.log(courseId)
+        axios.delete('http://localhost:3000/courses', {
+          data: { _id: courseId } // use data: not params. data is the request body, params are part of the url string -tcj 12-5-17
+        })
+      },
+      submitApprove(courseId) {
+        axios.get('http://localhost:3000/courses', {
+          data: {_id: courseId }
+        })
+          .then(response => {
+            var obj = response.data;
+            console.log(response.data + obj.name + obj.term+ obj.description + obj.instructor)
+            axios.post('http://localhost:3000/courses', obj)
+            .then(function (response) {
+                console.log(response);
+                })
+          })
+
+      } //not functional yet
+
     }
 
 

@@ -14,11 +14,11 @@
             </v-card-text>
             <v-card-actions>
               <v-dialog v-model="dialog" persistent max-width="600px">
-                <v-btn flat slot="activator">Submit Blog Post</v-btn>
+                <v-btn flat slot="activator">Submit Experience</v-btn>
                 <v-card>
                   <v-form v-model="valid" ref="form" lazy-validation>
                     <v-card-title>
-                      <span class="headline">Submit Blog Post</span>
+                      <span class="headline">Submit Experience</span>
                     </v-card-title>
                     <v-card-text>
                       <v-container grid-list-md>
@@ -104,6 +104,7 @@ export default {
   data () {
     return {
       dialog: false,
+      editDialog: false,
       valid: true,
       name: '',
       title: '',
@@ -130,6 +131,30 @@ export default {
           }
         }
       })
+  },
+  methods: {
+    submit() {
+      var obj = new Object();
+      obj.authorName = this.name;
+      obj.title = this.title;
+      obj.text = this.body;
+      obj.approved = false;
+      var tagsObj = new Object();
+      tagsObj.faculty = true;
+      obj.tags = tagsObj;
+      console.log(this.name + this.title + this.body)
+      axios.post('http://localhost:3000/posts', obj)
+      .then(function (response) {
+          console.log(response);
+        })
+      this.dialog = false
+    },
+    deleteEntry(postId) {
+      console.log(postId)
+      axios.delete('http://localhost:3000/posts', {
+        data: { _id: postId } // use data: not params. data is the request body, params are part of the url string -tcj 12-5-17
+      })
+    }
   }
 }
 </script>

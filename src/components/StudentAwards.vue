@@ -1,5 +1,5 @@
 <template>
-  <v-layout row>
+  <v-layout row wrap>
     <v-flex xs12 md3 class="py-3 px-3">
       <v-card >
         <v-card-title primary-title>
@@ -36,6 +36,7 @@
 
 
 <script>
+  import axios from 'axios';
   export default {
     data () {
       return {
@@ -45,9 +46,25 @@
           { avatar: require('@/assets/Madeline.jpg'), title: 'Y Award', subtitle: "<span class='grey--text text--darken-2'>Alex, Scott, Jennifer</span> — This award was given because these people are really smart. Like, so smart. And talented. And hard-working. The smartest talentedest hard-workingest people." },
           { divider: true, inset: true },
           { avatar: require('@/assets/Treu.jpg'), title: 'Z Award', subtitle: "<span class='grey--text text--darken-2'>Sandra Adams</span> — This award isn't as good." }
-        ]
+        ],
+        posts: []
       }
-    }
+    },
+    created() {
+      axios.get('http://localhost:3000/awards')
+        .then(response => {
+          var size = response.data.length;
+          var i;
+          for (i = 0; i < size; i++){
+            if (response.data[i].approved){
+              this.posts.push({
+                title: response.data[i].award,
+                subtitle: response.data[i].description,
+              });
+            }
+          }
+        })
+    },
   }
 </script>
 
