@@ -10,7 +10,7 @@
         class="white--text"
         >
         <img :src="require('@/assets/web.svg')" alt="Blog" height="200">
-        <h4>Blog</h4>
+        <div class="display-1">Blog</div>
       </v-layout>
     </v-parallax>
   </section>
