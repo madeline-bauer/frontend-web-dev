@@ -49,7 +49,7 @@ export default {
     }
   },
   created() {
-    axios.get('http://localhost:3000/partnerships')
+    axios.get('http://home.tcj.design:3000/partnerships')
       .then(response => {
         var size = response.data.length;
         var i;

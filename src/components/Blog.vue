@@ -105,7 +105,7 @@
                 </div>
             </v-card-actions>
           </v-card>
-        </div>
+        </div v-if="Boolean(isadmin == true)">
         <v-card class="my-3">
           <v-card-title>
             <span class="headline">Unapproved Posts:</span>
@@ -168,7 +168,7 @@ export default {
       if(token){
         this.isadmin=true;
       }
-    axios.get('http://localhost:3000/posts')
+    axios.get('http://home.tcj.design:3000/posts')
       .then(response => {
         var size = response.data.length;
         var i;
@@ -203,7 +203,7 @@ export default {
       obj.text = this.body;
       obj.approved = false;
       console.log(this.name + this.title + this.body)
-      axios.post('http://localhost:3000/posts', obj)
+      axios.post('http://home.tcj.design:3000/posts', obj)
       .then(function (response) {
           console.log(response);
         })
@@ -212,7 +212,7 @@ export default {
     deleteEntry(postId) {
       if (isadmin==true){
         console.log(postId)
-        axios.delete('http://localhost:3000/posts', {
+        axios.delete('http://home.tcj.design:3000/posts', {
           data: { _id: postId } // use data: not params. data is the request body, params are part of the url string -tcj 12-5-17
         })
         window.location.reload(true); //messy way to show changes
@@ -220,13 +220,13 @@ export default {
     },
     submitApprove(courseId) {
       if (isadmin==true){
-      axios.get('http://localhost:3000/posts', {
+      axios.get('http://home.tcj.design:3000/posts', {
         params: {_id: courseId }
       })
         .then(response => {
           var obj = response.data[0];
           obj.approved = true;
-          axios.post('http://localhost:3000/posts', obj)
+          axios.post('http://home.tcj.design:3000/posts', obj)
           .then(function (response) {
               console.log(response);
               })

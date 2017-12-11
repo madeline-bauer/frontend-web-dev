@@ -262,7 +262,7 @@
       if(token){
         this.isadmin=true;
       }
-      axios.get('http://localhost:3000/courses')
+      axios.get('http://home.tcj.design:3000/courses')
         .then(response => {
           var size = response.data.length;
           var i;
@@ -311,7 +311,7 @@
         obj.approved = false;
         obj.type = "suggested";
         console.log(this.name + this.term+ this.description + this.instructor)
-        axios.post('http://localhost:3000/courses', obj)
+        axios.post('http://home.tcj.design:3000/courses', obj)
         .then(function (response) {
             console.log(response);
           })
@@ -320,7 +320,7 @@
       deleteEntry(courseId) {
         if (isadmin==true){
         console.log(courseId)
-        axios.delete('http://localhost:3000/courses', {
+        axios.delete('http://home.tcj.design:3000/courses', {
           data: { _id: courseId } // use data: not params. data is the request body, params are part of the url string -tcj 12-5-17
         })
         window.location.reload(true); //messy way to show changes - also doesn't work
@@ -328,13 +328,13 @@
       },
       submitApprove(courseId) {
         if (isadmin==true){
-        axios.get('http://localhost:3000/courses', {
+        axios.get('http://home.tcj.design:3000/courses', {
           params: {_id: courseId }
         })
           .then(response => {
             var obj = response.data[0];
             obj.approved = true;
-            axios.post('http://localhost:3000/courses', obj)
+            axios.post('http://home.tcj.design:3000/courses', obj)
             .then(function (response) {
                 console.log(response);
                 })

@@ -49,7 +49,7 @@
       }
     },
     created() {
-      axios.get('http://localhost:3000/awards')
+      axios.get('http://home.tcj.design:3000/awards')
         .then(response => {
           var size = response.data.length;
           var i;

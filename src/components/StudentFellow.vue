@@ -17,7 +17,7 @@
         </v-btn>-->
         <form
           id='uploadForm'
-          action='http://localhost:3000/upload'
+          action='http://home.tcj.design:3000/upload'
           method='post'
           encType="multipart/form-data">
           <input type="file" name="upload" />

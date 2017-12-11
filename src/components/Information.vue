@@ -26,7 +26,7 @@ export default {
     }
   },
   created() {
-    axios.get('http://localhost:3000/siteContent')
+    axios.get('http://home.tcj.design:3000/siteContent')
       .then(response => {
         this.content = response.data[4].value;
       })

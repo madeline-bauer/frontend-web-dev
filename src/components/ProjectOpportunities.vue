@@ -107,7 +107,7 @@ export default {
     }
   },
   created() {
-    axios.get('http://localhost:3000/posts')
+    axios.get('http://home.tcj.design:3000/posts')
       .then(response => {
         var size = response.data.length;
         var i;
@@ -135,7 +135,7 @@ export default {
       tagsObj.internship = true;
       obj.tags = tagsObj;
       console.log(this.name + this.title + this.body)
-      axios.post('http://localhost:3000/posts', obj)
+      axios.post('http://home.tcj.design:3000/posts', obj)
       .then(function (response) {
           console.log(response);
         })
@@ -143,7 +143,7 @@ export default {
     },
     deleteEntry(postId) {
       console.log(postId)
-      axios.delete('http://localhost:3000/posts', {
+      axios.delete('http://home.tcj.design:3000/posts', {
         data: { _id: postId } // use data: not params. data is the request body, params are part of the url string -tcj 12-5-17
       })
     }
