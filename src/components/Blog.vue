@@ -33,7 +33,7 @@
               <v-card>
                 <v-form v-model="valid" ref="form" lazy-validation>
                   <v-card-title>
-                    <span class="headline">Submit Blog Post</span>
+                    <span class="headline">Submit2 Blog Post</span>
                   </v-card-title>
                   <v-card-text>
                     <v-container grid-list-md>
@@ -101,6 +101,7 @@
             </v-card-text>
             <v-card-actions>
                 <v-dialog v-model="editDialog" persistent width="600px">
+                 <div v-if="Boolean(isadmin == true)">
                   <v-btn flat slot="activator">Edit</v-btn>
                   <v-card>
                     <v-card-title>
@@ -148,8 +149,11 @@
                       <v-btn flat @click.native="editDialog = false">Close</v-btn>
                     </v-card-actions>
                   </v-card>
+                 </div>
                 </v-dialog>
-              <v-btn flat @click="deleteEntry()">Delete</v-btn>
+                <div v-if="Boolean(isadmin == true)">
+                  <v-btn flat @click="deleteEntry()">Delete</v-btn>
+                </div>
             </v-card-actions>
           </v-card>
         </div>
@@ -169,6 +173,7 @@ export default {
       dialog: false,
       editDialog: false,
       valid: true,
+      isadmin:'',
       name: '',
       title: '',
       body:'',
@@ -179,6 +184,10 @@ export default {
     }
   },
   created() {
+    var token=localStorage.getItem("accessToken");
+      if(token){
+        this.isadmin=true;
+      }
     axios.get('http://localhost:3000/posts')
       .then(response => {
         var size = response.data.length;
@@ -210,10 +219,15 @@ export default {
       this.dialog = false
     },
     deleteEntry(postId) {
-      console.log(postId)
-      axios.delete('http://localhost:3000/posts', {
-        params: { _id: postId }
-      })
+      if (isadmin==true){
+        console.log(postId)
+        axios.delete('http://localhost:3000/posts', {
+          params: { _id: postId }
+        })
+      }
+      else{
+        return;
+      }
     }
   }
 }

@@ -1,6 +1,5 @@
 <template>
   <main>
-
     <section>
       <v-parallax :src="require('@/assets/purple.png')" height = "400">
         <v-layout
@@ -159,7 +158,6 @@
 
   </section>
 
-
 </main>
 </template>
 
@@ -172,6 +170,7 @@
         max25chars: (v) => v.length <= 25 || 'Input too long!',
         tmp: '',
         search: '',
+        token: '',
         pagination: {},
         headers: [
           { text: 'Courses', value: 'name' },
@@ -183,6 +182,7 @@
         suggestedCourses: [],
         dialog: false,
         valid: true,
+        isadmin: '',
         name: '',
         term: '',
         description:'',
@@ -193,6 +193,10 @@
       }
     },
     created() {
+      var token=localStorage.getItem("accessToken");
+      if(token){
+        this.isadmin=true;
+      }
       axios.get('http://localhost:3000/courses')
         .then(response => {
           var size = response.data.length;
@@ -234,10 +238,33 @@
             console.log(response);
           })
         this.dialog = false;
-
+      },//checks for token in local storage
+      check(){
+        var token= localStorage.getItem("accessToken");
+        document.write(token)
+        if (token){
+          this.isadmin=true;
+          document.write("test2")
+        }
+        else{
+        document.write("test3")
+        }
       },
+      //test method ignore
+      tester(){
+        lock.show({
+        allowSignUp: false,
+      }); 
+      },
+      //test method ignore
+      toLock(){
+      var token=localStorage.getItem("accessToken");
+      if(token){
+        this.isadmin=true;
+      } 
     }
-
+    }
+  
 
   }
 </script>
