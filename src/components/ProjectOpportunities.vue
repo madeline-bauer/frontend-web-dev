@@ -83,10 +83,6 @@
               </v-flex>
             </v-container>
           </v-card-text>
-          <v-card-actions>
-            <v-btn flat @click="">Edit</v-btn>
-            <v-btn flat @click="deleteEntry(post._id)">Delete</v-btn>
-          </v-card-actions>
         </v-card>
       </div>
     </v-flex>

@@ -47,7 +47,7 @@
       return {
         tabs: [
           { url: '/faculty/StudentFellow', name: 'Student Fellow' },
-          { url: '/faculty/FacultyExperiences', name: 'Faculty Experiences' },
+          { url: '/faculty/FacultyExperiences', name: 'Experiences' },
           { url: '/faculty/TeachingFellow', name: 'Teaching Fellow' }
         ],
         active: null,
