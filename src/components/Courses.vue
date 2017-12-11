@@ -158,7 +158,7 @@
 
       <v-flex xs12 md3>
       </v-flex>
-
+      <div v-if="Boolean(isadmin == true)">
       <v-flex xs12 md8>
         <v-card class="my-3">
           <v-card-title class="headline">
@@ -219,7 +219,7 @@
           </v-card>
         </div>
       </v-flex>
-
+     </div>
     </v-layout>
 
   </section>
@@ -320,13 +320,16 @@
         this.dialog = false;
       },
       deleteEntry(courseId) {
+        if (isadmin==true){
         console.log(courseId)
         axios.delete('http://localhost:3000/courses', {
           data: { _id: courseId } // use data: not params. data is the request body, params are part of the url string -tcj 12-5-17
         })
         //window.location.reload(true); //messy way to show changes - also doesn't work
+        }
       },
       submitApprove(courseId) {
+        if (isadmin==true){
         axios.get('http://localhost:3000/courses', {
           data: {_id: courseId }
         })
@@ -347,6 +350,7 @@
 
           })
         this.deleteEntry(courseId)
+        }
       },
 
       check(){
