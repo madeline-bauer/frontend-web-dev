@@ -232,6 +232,9 @@ export default {
       this.submit()
       this.editDialog = false
       this.deleteEntry(courseId)
+    },
+    lock(){
+      lock.show();
     }
   }
 }
