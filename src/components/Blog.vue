@@ -105,8 +105,8 @@
                 </div>
             </v-card-actions>
           </v-card>
-        </div v-if="Boolean(isadmin == true)">
-        <v-card class="my-3">
+        </div >
+        <v-card class="my-3" v-if="Boolean(isadmin == true)">
           <v-card-title>
             <span class="headline">Unapproved Posts:</span>
           </v-card-title>
