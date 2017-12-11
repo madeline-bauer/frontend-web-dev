@@ -159,10 +159,10 @@
          </v-container>
        </section>
 
-
-
-
-
+    <v-footer class="pa-3">
+      <v-spacer></v-spacer>
+      <v-btn flat @click="lock()">Login</v-btn>
+    </v-footer>
     </main>
 </template>
 
@@ -197,6 +197,11 @@ export default {
         this.missionStatement = response.data[0].value;
         this.siteDescription = response.data[1].value;
       })
+  },
+  methods: {
+    lock(){
+      lock.show();
+    }
   }
 }
 </script>
