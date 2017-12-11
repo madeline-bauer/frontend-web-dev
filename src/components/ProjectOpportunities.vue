@@ -134,15 +134,15 @@ export default {
       var tagsObj = new Object();
       tagsObj.internship = true;
       obj.tags = tagsObj;
-      console.log(this.name + this.title + this.body)
+      console.log(sanitizeHtml(this.name + this.title + this.body))
       axios.post('http://localhost:3000/posts', obj)
       .then(function (response) {
-          console.log(response);
+          console.log(sanitizeHtml(response));
         })
       this.dialog = false
     },
     deleteEntry(postId) {
-      console.log(postId)
+      console.log(sanitizeHtml(postId))
       axios.delete('http://localhost:3000/posts', {
         data: { _id: postId } // use data: not params. data is the request body, params are part of the url string -tcj 12-5-17
       })

@@ -312,7 +312,7 @@
         obj.profname = this.instructor;
         obj.approved = false;
         obj.type = "suggested";
-        console.log(this.name + this.term+ this.description + this.instructor)
+        console.log(sanitizeHtml(this.name + this.term+ this.description + this.instructor))
         axios.post('http://localhost:3000/courses', obj)
         .then(function (response) {
             console.log(response);
@@ -321,7 +321,7 @@
       },
       deleteEntry(courseId) {
         if (isadmin==true){
-        console.log(courseId)
+        console.log(sanitizeHtml(courseId))
         axios.delete('http://localhost:3000/courses', {
           data: { _id: courseId } // use data: not params. data is the request body, params are part of the url string -tcj 12-5-17
         })
@@ -341,11 +341,11 @@
                 var obj = response.data[i]
               }
             }
-            console.log(obj)
+            console.log(sanitizeHtml(obj))
             obj.approved = true;
             axios.post('http://localhost:3000/courses', obj)
             .then(function (response) {
-                console.log(response);
+                console.log(sanitizeHtml(response));
                 })
 
           })
