@@ -10,7 +10,7 @@
         class="white--text"
         >
         <img :src="require('@/assets/people.svg')" alt="Community Partners" height="200">
-        <h4>Community Partners</h4>
+        <div class="display-1">Community Partners</div>
         </v-layout>
       </v-parallax>
     </section>
