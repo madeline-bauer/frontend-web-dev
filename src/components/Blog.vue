@@ -100,67 +100,46 @@
               </v-container>
             </v-card-text>
             <v-card-actions>
-                <v-dialog v-model="editDialog" persistent width="600px">
-                 <div v-if="Boolean(isadmin == true)">
-                  <v-btn flat slot="activator">Edit</v-btn>
-                  <v-card>
-                    <v-card-title>
-                      <span class="headline">Edit This Entry</span>
-                    </v-card-title>
-                    <v-card-text>
-                      <v-container grid-list-md>
-                        <v-layout wrap>
-                          <v-flex xs12>
-                            <v-text-field
-                              label="Name"
-                              v-model="post.author"
-                              :rules="rules"
-                              required
-                            >
-                            </v-text-field>
-                          </v-flex>
-                          <v-flex xs12>
-                            <v-text-field
-                              label="Title"
-                              v-model="post.title"
-                              :rules="rules"
-                              required
-                            >
-                            </v-text-field>
-                          </v-flex>
-                          <v-flex xs12>
-                            <v-text-field
-                              name="input-7-1"
-                              label="Body"
-                              v-model="post.content"
-                              :rules="rules"
-                              multi-line
-                              required
-                            >
-                            </v-text-field>
-                          </v-flex>
-                        </v-layout>
-                      </v-container>
-                      <small>*indicates required field</small>
-                    </v-card-text>
-                    <v-card-actions>
-                      <v-spacer></v-spacer>
-                      <v-btn flat @click="editEntry(post._id)" :disabled="!valid">Submit</v-btn>
-                      <v-btn flat @click.native="editDialog = false">Close</v-btn>
-                    </v-card-actions>
-                  </v-card>
-                 </div>
-                </v-dialog>
                 <div v-if="Boolean(isadmin == true)">
               <v-btn flat @click="deleteEntry(post._id)">Delete</v-btn>
                 </div>
             </v-card-actions>
           </v-card>
         </div>
+        <v-card class="my-3">
+          <v-card-title>
+            <span class="headline">Unapproved Posts:</span>
+          </v-card-title>
+        </v-card>
+
+
+        <div v-if="Boolean(isadmin == true)" v-for="suggestedPost in suggestedPosts"
+          :key="suggestedPost.id">
+          <v-card class="my-3">
+            <v-card-title class="headline">
+              {{suggestedPost.title}}
+              <v-spacer></v-spacer>
+            </v-card-title>
+            <v-card-text>
+              {{suggestedPost.content}}
+            </v-card-text>
+            <v-card-media>
+                <v-btn
+                  flat
+                  @click="submitApprove(suggestedPost._id)">
+                  Approve
+                </v-btn>
+                <v-btn
+                  flat
+                  @click="deleteEntry(suggestedPost._id)">
+                  Delete
+                </v-btn>
+            </v-card-media>
+          </v-card>
+        </div>
       </v-flex>
     </v-layout>
   </section>
-
 
 </main>
 </template>
@@ -180,7 +159,8 @@ export default {
       rules: [
           (v) => !!v || 'Item is required'
       ],
-      posts: []
+      posts: [],
+      suggestedPosts: [],
     }
   },
   created() {
@@ -200,6 +180,16 @@ export default {
               content: response.data[i].text,
               author: response.data[i].authorName,
               _id: response.data[i]._id,
+            });
+          }
+          else if (!(response.data[i].approved)){
+            this.suggestedPosts.push({
+              title: response.data[i].title,
+              date: response.data[i].postdate,
+              content: response.data[i].text,
+              author: response.data[i].authorName,
+              _id: response.data[i]._id,
+              approved: response.data[i].approved,
             });
           }
         }
@@ -228,14 +218,23 @@ export default {
         window.location.reload(true); //messy way to show changes
       }
     },
-    editEntry(postId) {
-      this.submit()
-      this.editDialog = false
-      this.deleteEntry(courseId)
+    submitApprove(courseId) {
+      if (isadmin==true){
+      axios.get('http://localhost:3000/posts', {
+        params: {_id: courseId }
+      })
+        .then(response => {
+          var obj = response.data[0];
+          obj.approved = true;
+          axios.post('http://localhost:3000/posts', obj)
+          .then(function (response) {
+              console.log(response);
+              })
+          this.deleteEntry(courseId)
+        })
+
+      }
     },
-    lock(){
-      lock.show();
-    }
   }
 }
 </script>

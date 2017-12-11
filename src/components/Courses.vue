@@ -158,8 +158,7 @@
 
       <v-flex xs12 md3>
       </v-flex>
-      <div v-if="Boolean(isadmin == true)">
-      <v-flex xs12 md8>
+      <v-flex xs12 md8 v-if="Boolean(isadmin == true)">
         <v-card class="my-3">
           <v-card-title class="headline">
             Suggested Unapproved Cinc Courses
@@ -193,7 +192,7 @@
       <v-flex xs12 md3>
       </v-flex>
 
-      <v-flex xs12 md8>
+      <v-flex xs12 md8 v-if="Boolean(isadmin == true)">
         <div v-for="suggestedUnapprovedCourse in suggestedUnapprovedCourses"
           :key="suggestedUnapprovedCourse.id">
           <v-card class="my-3">
@@ -219,7 +218,6 @@
           </v-card>
         </div>
       </v-flex>
-     </div>
     </v-layout>
 
   </section>
@@ -325,58 +323,27 @@
         axios.delete('http://localhost:3000/courses', {
           data: { _id: courseId } // use data: not params. data is the request body, params are part of the url string -tcj 12-5-17
         })
-        //window.location.reload(true); //messy way to show changes - also doesn't work
+        window.location.reload(true); //messy way to show changes - also doesn't work
         }
       },
       submitApprove(courseId) {
         if (isadmin==true){
         axios.get('http://localhost:3000/courses', {
-          data: {_id: courseId }
+          params: {_id: courseId }
         })
           .then(response => {
-            var size = response.data.length;
-            var i;
-            for (i = 0; i < size; i++){
-              if (response.data[i]._id === courseId) {
-                var obj = response.data[i]
-              }
-            }
-            console.log(obj)
+            var obj = response.data[0];
             obj.approved = true;
             axios.post('http://localhost:3000/courses', obj)
             .then(function (response) {
                 console.log(response);
                 })
-
+            this.deleteEntry(courseId)
           })
-        this.deleteEntry(courseId)
+
         }
       },
 
-      check(){
-        var token= localStorage.getItem("accessToken");
-        document.write(token)
-        if (token){
-          this.isadmin=true;
-          document.write("test2")
-        }
-        else{
-        document.write("test3")
-        }
-      },
-      //test method ignore
-      tester(){
-        lock.show({
-        allowSignUp: false,
-      });
-      },
-      //test method ignore
-      toLock(){
-      var token=localStorage.getItem("accessToken");
-      if(token){
-        this.isadmin=true;
-      }
-    }
     }
 
 
