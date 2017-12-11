@@ -10,11 +10,19 @@
             sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </div>
         </v-card-text>
-        <v-btn flat
+        <!--<v-btn flat
           >
           Upload
           <v-icon class = "black--text" right dark>cloud_upload</v-icon>
-        </v-btn>
+        </v-btn>-->
+        <form
+          id='uploadForm'
+          action='http://localhost:3000/upload'
+          method='post'
+          encType="multipart/form-data">
+          <input type="file" name="upload" />
+          <input type='submit' value='Upload!' />
+        </form>
       </v-card>
     </v-flex>
     <v-flex xs12 md9 class="px-3 py-3 hidden-sm-and-down">
@@ -32,7 +40,7 @@
             sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </div>
         </v-card-text>
-        <v-btn flat href="https://pdfobject.com/pdf/sample-3pp.pdf" target="_blank" 
+        <v-btn flat href="https://pdfobject.com/pdf/sample-3pp.pdf" target="_blank"
           >
           Download
           <v-icon class = "black--text" right dark>cloud_download</v-icon>
