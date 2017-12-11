@@ -9,7 +9,7 @@
         class="white--text"
         >
         <img :src="require('@/assets/local_library.svg')" alt="Faculty" height="200">
-        <h4>Faculty</h4>
+        <div class="display-1">Faculty</div>
       </v-layout>
     </v-parallax>
   </section>

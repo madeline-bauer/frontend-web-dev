@@ -9,7 +9,7 @@
         class="white--text"
         >
         <img :src="require('@/assets/today.svg')" alt="Calendar" height="200">
-        <h4>Calendar</h4>
+        <div class="display-1">Calendar</div>
         </v-layout>
       </v-parallax>
     </section>
