@@ -204,20 +204,19 @@
             </v-card-title>
             <v-card-text>
               {{suggestedUnapprovedCourse.description}}
-              <v-form v-model="validForm" ref="form" lazy-validation>
-                <v-checkbox
-                  label="Approve"
-                  v-model="suggestedUnapprovedCourse.approved"
-
-                ></v-checkbox>
-
+            </v-card-text>
+            <v-card-media>
                 <v-btn
                   flat
                   @click="submitApprove(suggestedUnapprovedCourse._id)">
-                  Submit
+                  Approve
                 </v-btn>
-              </v-form>
-            </v-card-text>
+                <v-btn
+                  flat
+                  @click="deleteEntry(suggestedUnapprovedCourse._id)">
+                  Delete
+                </v-btn>
+            </v-card-media>
           </v-card>
         </div>
       </v-flex>
@@ -251,7 +250,6 @@
         suggestedUnapprovedCourses: [],
         dialog: false,
         valid: true,
-        validForm: true,
         name: '',
         term: '',
         description:'',
@@ -322,21 +320,30 @@
         axios.delete('http://localhost:3000/courses', {
           data: { _id: courseId } // use data: not params. data is the request body, params are part of the url string -tcj 12-5-17
         })
+        //window.location.reload(true); //messy way to show changes - also doesn't work
       },
       submitApprove(courseId) {
         axios.get('http://localhost:3000/courses', {
           data: {_id: courseId }
         })
           .then(response => {
-            var obj = response.data;
-            console.log(response.data, courseId)
-            //axios.post('http://localhost:3000/courses', obj)
-            //.then(function (response) {
-            //    console.log(response);
-            //    })
-          })
+            var size = response.data.length;
+            var i;
+            for (i = 0; i < size; i++){
+              if (response.data[i]._id === courseId) {
+                var obj = response.data[i]
+              }
+            }
+            console.log(obj)
+            obj.approved = true;
+            axios.post('http://localhost:3000/courses', obj)
+            .then(function (response) {
+                console.log(response);
+                })
 
-      } //not functional yet
+          })
+        this.deleteEntry(courseId)
+      }
 
     }
 
