@@ -83,7 +83,7 @@
         </v-card>
       </v-flex>
       <v-flex xs12 md8>
-        <div v-for="post in posts" :key="post.id">
+        <div v-for="post in posts" :key="post._id">
           <v-card class="my-3" hover>
             <v-card-title>
               <span class="headline">{{ post.title }}</span>
@@ -145,14 +145,14 @@
                     </v-card-text>
                     <v-card-actions>
                       <v-spacer></v-spacer>
-                      <v-btn flat @click="" :disabled="!valid">Submit</v-btn>
+                      <v-btn flat @click="editEntry(post._id)" :disabled="!valid">Submit</v-btn>
                       <v-btn flat @click.native="editDialog = false">Close</v-btn>
                     </v-card-actions>
                   </v-card>
                  </div>
                 </v-dialog>
                 <div v-if="Boolean(isadmin == true)">
-                  <v-btn flat @click="deleteEntry()">Delete</v-btn>
+              <v-btn flat @click="deleteEntry(post._id)">Delete</v-btn>
                 </div>
             </v-card-actions>
           </v-card>
@@ -199,6 +199,7 @@ export default {
               date: response.data[i].postdate,
               content: response.data[i].text,
               author: response.data[i].authorName,
+              _id: response.data[i]._id,
             });
           }
         }
@@ -220,14 +221,16 @@ export default {
     },
     deleteEntry(postId) {
       if (isadmin==true){
-        console.log(postId)
-        axios.delete('http://localhost:3000/posts', {
-          params: { _id: postId }
-        })
-      }
-      else{
-        return;
-      }
+      console.log(postId)
+      axios.delete('http://localhost:3000/posts', {
+        data: { _id: postId } // use data: not params. data is the request body, params are part of the url string -tcj 12-5-17
+      })
+      window.location.reload(true); //messy way to show changes
+    },
+    editEntry(postId) {
+      this.submit()
+      this.editDialog = false
+      this.deleteEntry(courseId)
     }
   }
 }

@@ -90,6 +90,7 @@
           </v-card-actions>
         </v-card>
       </v-flex>
+
       <v-flex xs12 md8>
         <v-card class="my-3">
           <v-card-title class="headline">
@@ -120,8 +121,10 @@
           </v-data-table>
         </v-card>
       </v-flex>
+
       <v-flex xs12 md3>
       </v-flex>
+
       <v-flex xs12 md8>
         <v-card class="my-3">
           <v-card-title class="headline">
@@ -153,6 +156,69 @@
         </v-card>
       </v-flex>
 
+      <v-flex xs12 md3>
+      </v-flex>
+
+      <v-flex xs12 md8>
+        <v-card class="my-3">
+          <v-card-title class="headline">
+            Suggested Unapproved Cinc Courses
+            <v-spacer></v-spacer>
+            <v-text-field
+            append-icon="search"
+            label="Search"
+            single-line
+            hide-details
+            v-model="search"
+            ></v-text-field>
+          </v-card-title>
+          <v-data-table
+          v-bind:headers="headers"
+          v-bind:items="suggestedUnapprovedCourses"
+          v-bind:search="search"
+          >
+            <template slot="items" scope="props">
+              <td class="text-xs-right">{{ props.item.name }}</td>
+              <td class="text-xs-right">{{ props.item.term }}</td>
+              <td class="text-xs-right">{{ props.item.description }}</td>
+              <td class="text-xs-right">{{ props.item.instructor }}</td>
+            </template>
+            <template slot="pageText" scope="{ pageStart, pageStop }">
+              From {{ pageStart }} to {{ pageStop }}
+            </template>
+          </v-data-table>
+        </v-card>
+      </v-flex>
+
+      <v-flex xs12 md3>
+      </v-flex>
+
+      <v-flex xs12 md8>
+        <div v-for="suggestedUnapprovedCourse in suggestedUnapprovedCourses"
+          :key="suggestedUnapprovedCourse.id">
+          <v-card class="my-3">
+            <v-card-title class="headline">
+              {{suggestedUnapprovedCourse.name}}
+              <v-spacer></v-spacer>
+            </v-card-title>
+            <v-card-text>
+              {{suggestedUnapprovedCourse.description}}
+            </v-card-text>
+            <v-card-media>
+                <v-btn
+                  flat
+                  @click="submitApprove(suggestedUnapprovedCourse._id)">
+                  Approve
+                </v-btn>
+                <v-btn
+                  flat
+                  @click="deleteEntry(suggestedUnapprovedCourse._id)">
+                  Delete
+                </v-btn>
+            </v-card-media>
+          </v-card>
+        </div>
+      </v-flex>
 
     </v-layout>
 
@@ -180,6 +246,7 @@
         ],
         existingCourses: [],
         suggestedCourses: [],
+        suggestedUnapprovedCourses: [],
         dialog: false,
         valid: true,
         isadmin: '',
@@ -209,6 +276,7 @@
                 term: response.data[i].when,
                 description: response.data[i].description,
                 instructor: response.data[i].profname,
+                _id: response.data[i]._id,
               });
             }
             else if (response.data[i].type === 'suggested' && response.data[i].approved){
@@ -218,6 +286,18 @@
                 term: response.data[i].when,
                 description: response.data[i].description,
                 instructor: response.data[i].profname,
+                _id: response.data[i]._id,
+              });
+            }
+            else if (response.data[i].type === 'suggested' && !(response.data[i].approved)){
+              this.suggestedUnapprovedCourses.push({
+                value: false,
+                name: response.data[i].name,
+                term: response.data[i].when,
+                description: response.data[i].description,
+                instructor: response.data[i].profname,
+                _id: response.data[i]._id,
+                approved: response.data[i].approved,
               });
             }
           }
@@ -238,7 +318,37 @@
             console.log(response);
           })
         this.dialog = false;
-      },//checks for token in local storage
+      },
+      deleteEntry(courseId) {
+        console.log(courseId)
+        axios.delete('http://localhost:3000/courses', {
+          data: { _id: courseId } // use data: not params. data is the request body, params are part of the url string -tcj 12-5-17
+        })
+        //window.location.reload(true); //messy way to show changes - also doesn't work
+      },
+      submitApprove(courseId) {
+        axios.get('http://localhost:3000/courses', {
+          data: {_id: courseId }
+        })
+          .then(response => {
+            var size = response.data.length;
+            var i;
+            for (i = 0; i < size; i++){
+              if (response.data[i]._id === courseId) {
+                var obj = response.data[i]
+              }
+            }
+            console.log(obj)
+            obj.approved = true;
+            axios.post('http://localhost:3000/courses', obj)
+            .then(function (response) {
+                console.log(response);
+                })
+
+          })
+        this.deleteEntry(courseId)
+      },
+
       check(){
         var token= localStorage.getItem("accessToken");
         document.write(token)
@@ -254,17 +364,17 @@
       tester(){
         lock.show({
         allowSignUp: false,
-      }); 
+      });
       },
       //test method ignore
       toLock(){
       var token=localStorage.getItem("accessToken");
       if(token){
         this.isadmin=true;
-      } 
+      }
     }
     }
-  
+
 
   }
 </script>
